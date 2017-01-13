@@ -236,6 +236,172 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/13/Webpack学习笔记一/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="辣鸡Coder">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="普通程序员的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/13/Webpack学习笔记一/" itemprop="url">
+                  Webpack学习笔记一
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-13T12:44:12+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/13/Webpack学习笔记一/" class="leancloud_visitors" data-flag-title="Webpack学习笔记一">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>按照webpack-demos的顺序进行了学习，结合自己的理解简单的翻译了一下，食用原repository更佳,<a href="https://github.com/ruanyf/webpack-demos" target="_blank" rel="external">点我看原repo,给作者个star</a></p>
+</blockquote>
+<hr>
+<h3 id="What-is-Webpack"><a href="#What-is-Webpack" class="headerlink" title="What is Webpack"></a>What is Webpack</h3><p>Webpack是一个前端打包工具，能够将模块和依赖进行整合输出。</p>
+<p>Webpack的配置文件是webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">"entryFileUrl"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">"outputFileUrl"</span></div><div class="line">  &#125;</div><div class="line">  <span class="comment">//.....</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当你游了配置文件后，就可以使用webpack命令进行编译，一些基本的命令行指令是你需要知道</p>
+<ul>
+<li>webpack  在开发环境下执行一次编译</li>
+<li>webpack -p  在生产环境下执行一次编译，对源码进行压缩混淆</li>
+<li>webpack –watch  对程序进行监听并持续打包编译</li>
+<li>webpack -d  打包时生成map映射文件</li>
+<li>webpack –colors  更美观？</li>
+</ul>
+<p>你也可以在package.json配置文件中的“scripts”进行配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">"scripts": &#123;</div><div class="line">  "dev": "webpack-dev-server",</div><div class="line">  "deploy": "NODE_ENV=production webpack -p"</div><div class="line">&#125;,</div></pre></td></tr></table></figure></p>
+<h3 id="Entry-file-and-build"><a href="#Entry-file-and-build" class="headerlink" title="Entry file and build"></a>Entry file and build</h3><p>entry告诉webpack根据哪一个文件进行打包，output则表示打包编译后输出文件的目录，for example<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">"./main.js"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">"build.js"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p> main.js就是entry file，build.js就是经过打包后输出的文件。</p>
+<h3 id="多入口文件"><a href="#多入口文件" class="headerlink" title="多入口文件"></a>多入口文件</h3><p>Webpack允许多入口文件的配置，这可以用于多页面应用中。<br>example<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="string">"build1"</span>: <span class="string">'./main1.js'</span>,</div><div class="line">    <span class="string">"build2"</span>: <span class="string">'./main2.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>entry由字符串变成对象，并在其中添加[编译名的文件名]:[入口文件Url]组成的键值对；<br>output由指定的文件名变成[name].js，根据entry指定的name来打包编译。</p>
+<h3 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h3><p>Loaders也叫加载器，它能够为你的应用对源文件做进一步的处理。</p>
+<h4 id="Babel-loader"><a href="#Babel-loader" class="headerlink" title="Babel-loader"></a>Babel-loader</h4><p>打个比方，<a href="https://github.com/babel/babel-loader" target="_blank" rel="external">Babel-loader</a>能够将JSX/Es6转换成浏览器能够识别的js文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">"./main.js"</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">"build.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">Loaders</span>: [</div><div class="line">      <span class="comment">// ===Babel加载器===begin</span></div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/(node_modules|bower_components)/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">'es2015'</span>]</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">//===end</span></div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="Css-loader"><a href="#Css-loader" class="headerlink" title="Css-loader"></a>Css-loader</h4><p>  在js中有时需要加载css样式表文件，Css-loader可以胜任这项工作。<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>:[</div><div class="line">      &#123; <span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">loader</span>: <span class="string">'style-loader!css-loader'</span> &#125;,</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h4 id="Image-loader"><a href="#Image-loader" class="headerlink" title="Image-loader"></a>Image-loader</h4><p>  在js中引用img文件<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//..省略其他部分</span></div><div class="line">loaders:[</div><div class="line">  &#123; <span class="attr">test</span>: <span class="regexp">/\.(png|jpg)$/</span>, <span class="attr">loader</span>: <span class="string">'url-loader?limit=8192'</span> &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<p>  url-loader会将图片进行转换，如果图片小于8192bytes，将会转换成Base64的Data URL；反过来，就转换成正常的路径。<br>  假设有两张一大一小的图片，第一张小于8192bytes，第二张则大于。那么两者会被换成这样：</p>
+  <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 小图转换成Base64 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"data:image/png;base64,iVBOR...uQmCC"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"4853ca667a2b8b8844eb2693ac1b2578.png"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="Css-Module"><a href="#Css-Module" class="headerlink" title="Css Module"></a>Css Module</h4><p>css-loader?modules 能够开启加载的Css模块中的属性的作用域。<br>也就是说你导入的css模块中的属性默认是本地的、局部的，你能选择使用:global(…)将选择器提升为全局。<a href="https://css-modules.github.io/webpack-demo/" target="_blank" rel="external">详细</a><br>index.heml<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"h1"</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">"h2"</span>&gt;</span>Hello Webpack<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>app.css<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.h1</span> &#123;</div><div class="line">  <span class="attribute">color</span>:red;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-pseudo">:global(.h2)</span> &#123;</div><div class="line">  <span class="attribute">color</span>: blue;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>main.JSX<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react'</span>);</div><div class="line"><span class="keyword">var</span> ReactDOM = <span class="built_in">require</span>(<span class="string">'react-dom'</span>);</div><div class="line"><span class="keyword">var</span> style = <span class="built_in">require</span>(<span class="string">'./app.css'</span>);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">className</span>=<span class="string">&#123;style.h1&#125;</span>&gt;</span>Hello World<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">className</span>=<span class="string">"h2"</span>&gt;</span>Hello Webpack<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span>,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'example'</span>)</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.jsx'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>:[</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js[x]?$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'style-loader!css-loader?modules'</span>  <span class="comment">//注意⚠️ ?modules</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>第一个h1不会有任何变化，因为没有定义全局的.h1选择器；<br>第二个h1为红色，由于.h1的作用范围为本地，所以style.h1能够正确找到选择器；<br>h2均为蓝色，其是通过:global(.h2){…}定义的选择器，所以作用范围为全部。<br><img src="/2017/01/13/Webpack学习笔记一/css-module.png" alt="运行结果" title="运行结果"></p>
+<h3 id="Plugin"><a href="#Plugin" class="headerlink" title="Plugin"></a>Plugin</h3><h4 id="UglifyJs-Plugin"><a href="#UglifyJs-Plugin" class="headerlink" title="UglifyJs Plugin"></a>UglifyJs Plugin</h4><p>Webpack 有它自己的插件用来扩展方法。比如<a href="http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin" target="_blank" rel="external">UglifyJs plugin</a>会最小化的输出编译过后的js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> uglifyJsPlugin = webpack.optimize.UglifyJsPlugin;</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> uglifyJsPlugin(&#123;</div><div class="line">      <span class="attr">compress</span>: &#123;</div><div class="line">        <span class="attr">warnings</span>: <span class="literal">false</span></div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>打包编译后，bundle.js会被最小化输出。类似于<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> o=<span class="string">"Hello"</span>;o+=<span class="string">" World"</span>,<span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;"</span>+o+<span class="string">"&lt;/h1&gt;"</span>)</div></pre></td></tr></table></figure></p>
+<h4 id="HTML-Webpack-Plugin-and-Open-Browser-Webpack-Plugin"><a href="#HTML-Webpack-Plugin-and-Open-Browser-Webpack-Plugin" class="headerlink" title="HTML Webpack Plugin and Open Browser Webpack Plugin"></a>HTML Webpack Plugin and Open Browser Webpack Plugin</h4><p>webpack还可以使用第三方的插件。<br>HTML Webpack Plugin 能够为你自动生成一个index.html，<br>Open Browser Webpack Plugin能够在webpack服务运行的时候打开一个新的浏览器标签并载入页面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> HtmlwebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="keyword">var</span> OpenBrowserPlugin = <span class="built_in">require</span>(<span class="string">'open-browser-webpack-plugin'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> HtmlwebpackPlugin(&#123;</div><div class="line">      <span class="attr">title</span>: <span class="string">"webpack-demo"</span>,</div><div class="line">      <span class="attr">filename</span>: <span class="string">"index.html"</span></div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> OpenBrowserPlugin(&#123;</div><div class="line">      <span class="attr">url</span>: <span class="string">"http://localhost:8080"</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>运行webpack-dev-save，现在你不需要自己创建index.html和打开浏览器了。👍</p>
+<h4 id="Environment-flags"><a href="#Environment-flags" class="headerlink" title="Environment flags"></a>Environment flags</h4><p>你还能利用环境标志，让部分代码只能运行在开发环境中<br>main.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;Environment flags&lt;/h1&gt;'</span>)</div><div class="line"><span class="keyword">if</span> (__DEV__)&#123;</div><div class="line">  <span class="built_in">document</span>.write(<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> devFlagPlugin = <span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">  <span class="attr">__DEV__</span>: <span class="built_in">JSON</span>.stringify(<span class="built_in">JSON</span>.parse(process.env.DEBUG || <span class="string">'false'</span>))</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [devFlagPlugin]</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>现在运行webpack<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># Linux $ Mac</div><div class="line">$ env DEBUG=true webpack-dev-server</div><div class="line"></div><div class="line"># Windows</div><div class="line">$ set DEBUG=true</div><div class="line">$ webpack-dev-server</div></pre></td></tr></table></figure></p>
+<img src="/2017/01/13/Webpack学习笔记一/environment.png" alt="运行结果" title="运行结果">
+<h3 id="Code-splitting"><a href="#Code-splitting" class="headerlink" title="Code splitting"></a>Code splitting</h3><p>在大型项目中，将所有的代码放在一个文件中是极其没有效率的一件事件。webpack允许将其分割成许多不同的块，并按照需求进行加载。<br>首先，用require.ensure定义一个分割点<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>.ensure([<span class="string">'./a'</span>],<span class="function"><span class="keyword">function</span>(<span class="params">require</span>)</span>&#123;</div><div class="line">  vat content  = <span class="built_in">require</span>(<span class="string">'./a'</span>)</div><div class="line">  <span class="built_in">document</span>.open()</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;Environment flags&lt;/h1&gt;'</span>)</div><div class="line">  <span class="built_in">document</span>.colors()</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>require.ensure 告诉webpack “a.js”应该被分开加载并打包为一个文件。<br>另外一种方法是使用<a href="https://www.npmjs.com/package/bundle-loader" target="_blank" rel="external">bundle-loader</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"></div><div class="line"><span class="comment">// Now a.js is requested, it will be bundled into another file</span></div><div class="line"><span class="keyword">var</span> load = <span class="built_in">require</span>(<span class="string">'bundle-loader!./a.js'</span>);</div><div class="line"></div><div class="line"><span class="comment">// To wait until a.js is available (and get the exports)</span></div><div class="line"><span class="comment">//  you need to async wait for it.</span></div><div class="line">load(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>) </span>&#123;</div><div class="line">  <span class="built_in">document</span>.open();</div><div class="line">  <span class="built_in">document</span>.write(<span class="string">'&lt;h1&gt;'</span> + file + <span class="string">'&lt;/h1&gt;'</span>);</div><div class="line">  <span class="built_in">document</span>.close();</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/09/面向对象的程序设计-Javascript继承/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -681,7 +847,15 @@
 <h3 id="CORS-跨源资源分享（Cross-Origin-Resource-Sharing）"><a href="#CORS-跨源资源分享（Cross-Origin-Resource-Sharing）" class="headerlink" title="CORS - 跨源资源分享（Cross-Origin Resource Sharing）"></a>CORS - 跨源资源分享（Cross-Origin Resource Sharing）</h3><blockquote>
 <p>它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。</p>
 </blockquote>
-<h2 id="JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？"><a href="#JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？" class="headerlink" title="JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？"></a>JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？</h2><p>–未完待写</p>
+<h2 id="JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？"><a href="#JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？" class="headerlink" title="JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？"></a>JavaScript实现继承的常用方法有哪些？你推荐的是哪一种？</h2><p>JavaScript常用的实现继承的方法有下面几种：</p>
+<ol>
+<li>原型链实现继承</li>
+<li>借用构造函数式继承</li>
+<li>组合式继承</li>
+<li>原型式继承</li>
+<li>寄生式继承</li>
+<li>寄生组合式继承<br>相对来说，组合式继承和寄生组合式继承来的更加推荐，在这两者中后者优于前者。其他的几种继承实现方式或多或少都有些许存在的问题。</li>
+</ol>
 
           
         
@@ -1659,141 +1833,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/11/30/记自己的第一个BLOG/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="辣鸡Coder">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="普通程序员的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/30/记自己的第一个BLOG/" itemprop="url">
-                  '记自己的第一个BLOG'
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-11-30T20:06:44+08:00">
-                2016-11-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/30/记自己的第一个BLOG/" class="leancloud_visitors" data-flag-title="'记自己的第一个BLOG'">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="缘起"><a href="#缘起" class="headerlink" title="缘起"></a>缘起</h3><p>​    毕业之后免不了的是迷茫和憧憬.一个普通的程序员，仅以此博客记录自己的成长</p>
-<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>​    有了建博客的想法后断断续续都在寻找好看的主题样式，直到发现了Hexo-Theme-NexT: 精于心，简于形</p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><h4 id="HEXO安装"><a href="#HEXO安装" class="headerlink" title="HEXO安装"></a>HEXO安装</h4><p>​        通过NPM 安装即可、更多内容可以根据查看官方<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="external">文档</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<h4 id="切换主题"><a href="#切换主题" class="headerlink" title="切换主题"></a>切换主题</h4><p>​        下载<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">NexT</a>的主题后放入Hexo的themes文件夹下，并替换Hexo根目录下_config.yml文件中”theme”的值为所下载的主题文件夹名称</p>
-<h4 id="Deploy"><a href="#Deploy" class="headerlink" title="Deploy"></a>Deploy</h4><p>​        安装 <a href="https://hexo.io/zh-cn/docs/deployment.html" target="_blank" rel="external">hexo-deployer-git</a>并修改_config.yml中deploy的配置信息，发布即可</p>
-<h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>​    给自己定一个目标，每星期写一篇总结。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1832,7 +1878,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1842,7 +1888,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
