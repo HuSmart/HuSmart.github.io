@@ -236,6 +236,150 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/14/Webpack学习笔记二/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="辣鸡Coder">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="普通程序员的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/14/Webpack学习笔记二/" itemprop="url">
+                  Webpack学习笔记二
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-14T11:21:11+08:00">
+                2017-01-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/01/14/Webpack学习笔记二/" class="leancloud_visitors" data-flag-title="Webpack学习笔记二">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这是学习Webpack的下一篇笔记，上一篇<a href="https://jsdtt.github.io/2017/01/13/Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%80/" target="_blank" rel="external">webpack学习笔记一</a>.</p>
+<h3 id="Common-chunk"><a href="#Common-chunk" class="headerlink" title="Common chunk"></a>Common chunk</h3><p>当多个script文件用着公共的函数块时，你能使用CommonsChunkPlugin将公共部分编译成为一个单独的文件。<br>省略了html和js..<br>webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CommonsChunkPlugin = <span class="built_in">require</span>(<span class="string">"webpack/lib/optimize/CommonsChunkPlugin"</span>);</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">bundle1</span>: <span class="string">'./main1.jsx'</span>,</div><div class="line">    <span class="attr">bundle2</span>: <span class="string">'./main2.jsx'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>:[</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js[x]?$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> CommonsChunkPlugin(<span class="string">'init.js'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>通过webpack编译打包后会生成一个init.js的公共部分</p>
+<h3 id="Vendor-chunk"><a href="#Vendor-chunk" class="headerlink" title="Vendor chunk"></a>Vendor chunk</h3><p>不知道Vendor chunk应该翻译成什么，大意应该就是第三方library函数块。<br>通过CommonsChunkPlugin能够将第三方的library导出为一个单独的文件，从而让编译后的js在开发的时候更加清晰<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> $ = <span class="built_in">require</span>(<span class="string">'jquery'</span>)</div><div class="line">$.(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>)</div></pre></td></tr></table></figure></p>
+<p>//省略html，在html中要引入分割出来的第三方library，如vendor.js<br>webpack.config.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./main.js'</span>,</div><div class="line">    <span class="attr">vendor</span>: [<span class="string">'jquery'</span>],</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(<span class="comment">/* chunkName= */</span><span class="string">'vendor'</span>, <span class="comment">/* filename= */</span><span class="string">'vendor.js'</span>)</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果你想让一个模块能够被其他任何模块所得到，例如$和jQuery。你除了需要require(“jquery”)之外还应该使用<a href="http://webpack.github.io/docs/shimming-modules.html" target="_blank" rel="external">ProvidePlugin</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line">$(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./main.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">      <span class="attr">$</span>: <span class="string">"jquery"</span>,</div><div class="line">      <span class="attr">jQuery</span>: <span class="string">"jquery"</span>,</div><div class="line">      <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="Exposing-global-variables"><a href="#Exposing-global-variables" class="headerlink" title="Exposing global variables"></a>Exposing global variables</h3><p>如果你想使用一些全局变量，但是不想这些变量在bundle的时候包括在里面。你可以开启在webpack的配置文件中开启externals.<a href="http://webpack.github.io/docs/library-and-externals.html" target="_blank" rel="external">文档</a><br>例如你有一个data.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = <span class="string">"Hello"</span></div></pre></td></tr></table></figure></p>
+<p>我们能够将data暴露出来，成为全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.jsx'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>:[</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js[x]?$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">externals</span>: &#123;</div><div class="line">    <span class="comment">// require('data') is external and available</span></div><div class="line">    <span class="comment">//  on the global var data</span></div><div class="line">    <span class="string">'data'</span>: <span class="string">'data'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>现在，你可以在js中像引用模块变量一样加载data，但是它实际上是一个全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.jsx</span></div><div class="line"><span class="keyword">var</span> data = <span class="built_in">require</span>(<span class="string">'data'</span>);</div><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react'</span>);</div><div class="line"><span class="keyword">var</span> ReactDOM = <span class="built_in">require</span>(<span class="string">'react-dom'</span>);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;h1&gt;&#123;data&#125;&lt;/h1&gt;,</div><div class="line">  <span class="built_in">document</span>.body</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<h3 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h3><p>Hot Module Replacement()热加载能够在修改后对应用进行实时加载而不需要重新加载，你能够使用两种方法开启热加载<br>（1）在命令行追加“–hot”和”–inline“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack-dev-server --hot --inline</div></pre></td></tr></table></figure></p>
+<ul>
+<li>–hot: 添加HotModuleReplacementPlugin并似的服务进入热加载模式</li>
+<li>–inline: webpack-dev-server在运行中进行bundle</li>
+<li>–hot –inline: 同时添加上面两个命令的功能<br>（2）编辑webpack配置文件</li>
+<li>添加HotModuleReplacementPlugin扩展</li>
+<li>在entry中添加 webpack/hot/dev-server 和 webpack-dev-server/client?<a href="http://localhost:8080" target="_blank" rel="external">http://localhost:8080</a></li>
+</ul>
+<p>webpack的配置文件就像下面这样<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: [</div><div class="line">    <span class="string">'webpack/hot/dev-server'</span>,</div><div class="line">    <span class="string">'webpack-dev-server/client?http://localhost:8080'</span>,</div><div class="line">    <span class="string">'./index.js'</span></div><div class="line">  ],</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    <span class="attr">publicPath</span>: <span class="string">'/static/'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  ],</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">      <span class="attr">query</span>: &#123;</div><div class="line">        <span class="attr">presets</span>: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">include</span>: path.join(__dirname, <span class="string">'.'</span>)</div><div class="line">    &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>现在我们可以像之前一样启动服务了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack-dev-server</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/13/Webpack学习笔记一/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1674,165 +1818,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/01/JavaScript中的This/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="辣鸡Coder">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="普通程序员的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/JavaScript中的This/" itemprop="url">
-                  JavaScript中的This
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-01T10:59:45+08:00">
-                2016-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/12/01/JavaScript中的This/" class="leancloud_visitors" data-flag-title="JavaScript中的This">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>JavaScript中的This和其他编程语言中的This有那么一点区别，并不会像Java中的This一样指向本身，而是由函数运行时的环境来决定指向什么….</p>
-<h3 id="什么是This"><a href="#什么是This" class="headerlink" title="什么是This"></a>什么是This</h3><p>​    This是函数作用域中的关键字，指向某个对象。不同的执行上下文会导致不同的this指向。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">let</span> count = <span class="number">1</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.count)</div><div class="line">&#125;</div><div class="line"></div><div class="line">fun()	<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
-<p>​    上面的栗子中，看上去“this.count” 应该是指向fun自己的count变量，然而实际上函数执行的时候this指向了window</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">  <span class="attr">count</span>: <span class="number">1</span>,</div><div class="line">  fun()&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`count:<span class="subst">$&#123;<span class="keyword">this</span>.count&#125;</span>`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.fun()	<span class="comment">//count:1</span></div></pre></td></tr></table></figure>
-<p>​    当给函数明确调用对象的时候，this就指向的是调用的对象。</p>
-<p>​    由此看出This不同于函数，是在运行时绑定的而不是定义的时候进行绑定。this依赖于调用函数的上下文，和函数被调用的方式相关</p>
-<h3 id="This绑定规则"><a href="#This绑定规则" class="headerlink" title="This绑定规则"></a>This绑定规则</h3><p>​    this包含四种绑定规则，分别为默认绑定、隐式绑定、明确绑定以及New 绑定，在Es6箭头函数中的this会比较特殊，指向它的上一层作用域。</p>
-<h4 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h4><p>​    默认绑定顾名思义就是在没有其他绑定规则适用的情况下采用此种规则进行绑定。第一个栗子就是对this进行默认绑定，<strong>当函数不加任何修饰被独立调用的时候</strong>采用默认绑定，将this绑定到全局window上；因为在全局作用域中并没有“count”变量，所以结果为undefined。</p>
-<p>​    在非严格模式下默认绑定会将this指向window，但是在严格模式下这是不被允许的。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">strict</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">  "use strict"</span></div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.sum)</div><div class="line">&#125;</div><div class="line">strict()	<span class="comment">//Uncaught TypeError: Cannot read property 'sum' of undefined(…)</span></div></pre></td></tr></table></figure>
-<p>​    另外，只有在以“严格模式”运行的函数中定义this并进行默认绑定才会出现语法错误</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//非严格模式</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">noStrict</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.acg)</div><div class="line">&#125;</div><div class="line"><span class="comment">//严格模式</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">strict</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="meta">  "use strict"</span></div><div class="line">  noStrict()</div><div class="line">&#125;</div><div class="line">strict()	<span class="comment">//undefined</span></div></pre></td></tr></table></figure>
-<h4 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h4><p>​    当this所在函数是被一个对象所拥有的时候，将会对this和该对象进行绑定。例如上面第二个例子中fun( )属于obj，也就是说被obj这个对象所拥有，那么就会将obj绑定到this上: this.count 等价于 obj.count 自然就得到了1</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`count:<span class="subst">$&#123;<span class="keyword">this</span>.count&#125;</span>`</span>)</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">  <span class="attr">count</span>: <span class="number">3</span>,</div><div class="line">  <span class="attr">fun</span>: fun</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> obj2 = &#123;</div><div class="line">  <span class="attr">count</span>: <span class="number">2</span>,</div><div class="line">  <span class="attr">obj</span>: obj</div><div class="line">&#125;</div><div class="line"><span class="comment">//只有最后会对this造成影响</span></div><div class="line">obj2.obj.fun()	<span class="comment">// count: 3</span></div><div class="line"><span class="keyword">let</span> copy = obj.fun</div><div class="line">copy()	<span class="comment">//count:undefined</span></div></pre></td></tr></table></figure>
-<p>​    需要注意的是只有对象属性引用链的最后会对this造成影响，就如同上面的代码打印的不是obj2而是obj的count。</p>
-<p>​    隐式绑定有时也会丢失，上面代码中的copy引用了obj中的fun方法，所以执行copy( )实际上就相当于不加修饰的直接调用了 fun( )，从而this指向了全局</p>
-<h4 id="明确绑定"><a href="#明确绑定" class="headerlink" title="明确绑定"></a>明确绑定</h4><p>​    明确绑定即使用call、apply 方法指定你想要的this，这两个方法的第一个参数都用于绑定原函数中的this，后面的参数一般用于将实参传递给原函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.count)</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> obj =&#123;</div><div class="line">  <span class="attr">count</span>:<span class="number">666</span></div><div class="line">&#125;</div><div class="line">fun.call(obj)	<span class="comment">//666</span></div></pre></td></tr></table></figure>
-<h5 id="硬绑定"><a href="#硬绑定" class="headerlink" title="硬绑定"></a>硬绑定</h5><p>​    因为明确绑定并不能this“丢失”或者是被第三方框架覆盖，通过硬绑定可以实现(下面的代码)。diyBind()封装了对fun的明确绑定，每一次对diyBind()进行调用都会进行一次明确绑定，由此能够实现this不被别的因素改变。这只是我的一个拙劣的实现，在ES5中就已经将硬绑定作为内建工具，使用方法如下。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.count)</div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> obj = &#123;</div><div class="line">  <span class="attr">count</span>:<span class="number">999</span></div><div class="line">&#125;</div><div class="line"><span class="keyword">let</span> diyBind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">  fun.apply(obj)</div><div class="line">&#125;</div><div class="line">diyBind()	<span class="comment">//999</span></div><div class="line">diyBind.call(<span class="built_in">window</span>)	<span class="comment">//999</span></div><div class="line"></div><div class="line"><span class="comment">//ES5内建bind方法</span></div><div class="line"><span class="keyword">let</span> b = fun.bind(obj)</div></pre></td></tr></table></figure>
-<h4 id="New绑定"><a href="#New绑定" class="headerlink" title="New绑定"></a>New绑定</h4><p>​    在使用new 关键字调用方法的时候，会产生出一个新的对象，这个新创建的对象将会被设置为调用函数的this绑定.  new fun( )时 产生一个全新的对象“xxx” 并将”xxx” 与被调用的fun()中的this进行绑定</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fun</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">  <span class="keyword">this</span>.a = a</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> xxx = <span class="keyword">new</span> fun(<span class="string">'fun'</span>)</div><div class="line"><span class="built_in">console</span>.log(xxx.a)	<span class="comment">//fun</span></div></pre></td></tr></table></figure>
-<h4 id="ES6箭头函数中this的穿透性"><a href="#ES6箭头函数中this的穿透性" class="headerlink" title="ES6箭头函数中this的穿透性"></a>ES6箭头函数中this的穿透性</h4><p>​    箭头函数会将内部的this延伸至上一层的作用域中，也就是上一层的上下文会穿透到内层的箭头函数中来。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;</div><div class="line">  <span class="attr">hello</span>: <span class="string">'world'</span>,</div><div class="line">  fun()&#123;</div><div class="line">    <span class="keyword">const</span> bar = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.hello)</div><div class="line">    <span class="keyword">return</span> bar </div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.hello = <span class="string">'ES6'</span></div><div class="line"><span class="built_in">window</span>.bar = obj.fun()</div><div class="line"><span class="built_in">window</span>.bar()	<span class="comment">//world</span></div></pre></td></tr></table></figure>
-<p>​    将箭头函数转换成ES5的语法就是如下所示</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> obj = &#123;</div><div class="line">  <span class="attr">hello</span>: <span class="string">'world'</span>,</div><div class="line">  <span class="attr">fun</span> : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span></div><div class="line">    <span class="keyword">var</span> bar = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(that.hello)</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> bar </div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="绑定规则的优先级"><a href="#绑定规则的优先级" class="headerlink" title="绑定规则的优先级"></a>绑定规则的优先级</h3><p>​    绑定规则的优先级由高到低分别为：new绑定 &gt;&gt;  明确绑定 &gt;&gt; 隐式绑定 &gt;&gt; 默认绑定 </p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li>被new调用：    this相当于新构建的对象</li>
-<li>被call、apply或者bind调用：this相当于指定的对象</li>
-<li>被”拥有调用方法的对象”进行调用的时候：this相当于“拥有被调用方法的那个对象”</li>
-<li>直接调用方法的时候：严格模式下语法错误，非严格模式下this相当于全局对象</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1878,7 +1863,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
