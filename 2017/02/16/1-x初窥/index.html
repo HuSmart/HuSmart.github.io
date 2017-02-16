@@ -1,0 +1,778 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="AngularJs," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="AngularJs 1.x 窥探
+根据AngularJs 1.x官方教程整理笔记（step0-step8）
+
+ng-app标志1&amp;lt;html ng-app=&quot;phoneApp&quot;&amp;gt;
+申明整个html都是angular的作用域，同时也可以在局部进行申明。例如1&amp;lt;div ng-app&amp;gt;
+Angular Templates1234567891011121314151617181920">
+<meta property="og:type" content="article">
+<meta property="og:title" content="angularjs_1.x初窥">
+<meta property="og:url" content="http://yoursite.com/2017/02/16/1-x初窥/index.html">
+<meta property="og:site_name" content="普通程序员的博客">
+<meta property="og:description" content="AngularJs 1.x 窥探
+根据AngularJs 1.x官方教程整理笔记（step0-step8）
+
+ng-app标志1&amp;lt;html ng-app=&quot;phoneApp&quot;&amp;gt;
+申明整个html都是angular的作用域，同时也可以在局部进行申明。例如1&amp;lt;div ng-app&amp;gt;
+Angular Templates1234567891011121314151617181920">
+<meta property="og:updated_time" content="2017-02-16T14:22:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="angularjs_1.x初窥">
+<meta name="twitter:description" content="AngularJs 1.x 窥探
+根据AngularJs 1.x官方教程整理笔记（step0-step8）
+
+ng-app标志1&amp;lt;html ng-app=&quot;phoneApp&quot;&amp;gt;
+申明整个html都是angular的作用域，同时也可以在局部进行申明。例如1&amp;lt;div ng-app&amp;gt;
+Angular Templates1234567891011121314151617181920">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/16/1-x初窥/"/>
+
+
+
+
+
+  <title> angularjs_1.x初窥 | 普通程序员的博客 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">普通程序员的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">以中有足乐者,不知口体之奉不若人也.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/16/1-x初窥/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="辣鸡Coder">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="普通程序员的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                angularjs_1.x初窥
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T21:38:23+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/16/1-x初窥/" class="leancloud_visitors" data-flag-title="angularjs_1.x初窥">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="AngularJs-1-x-窥探"><a href="#AngularJs-1-x-窥探" class="headerlink" title="AngularJs 1.x 窥探"></a>AngularJs 1.x 窥探</h1><blockquote>
+<p>根据AngularJs 1.x<a href="https://docs.angularjs.org/tutorial" target="_blank" rel="external">官方教程</a>整理笔记（step0-step8）</p>
+</blockquote>
+<h2 id="ng-app标志"><a href="#ng-app标志" class="headerlink" title="ng-app标志"></a>ng-app标志</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">ng-app</span>=<span class="string">"phoneApp"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>申明整个html都是angular的作用域，同时也可以在局部进行申明。例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="Angular-Templates"><a href="#Angular-Templates" class="headerlink" title="Angular Templates"></a>Angular Templates</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个phonecatApp的实例，与ng-app作用域进行绑定</span></div><div class="line"><span class="keyword">var</span> phonecatApp = angular.module(<span class="string">'phonecatApp'</span>, []);</div><div class="line"></div><div class="line"><span class="comment">// Define the `PhoneListController` controller on the `phonecatApp` module</span></div><div class="line">phonecatApp.controller(<span class="string">'PhoneListController'</span>, <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params">$scope</span>) </span>&#123;</div><div class="line"><span class="comment">// 绑定在$scope上的变量可以直接被模版获取</span></div><div class="line">  $scope.phones = [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'Nexus S'</span>,</div><div class="line">      <span class="attr">snippet</span>: <span class="string">'Fast just got faster with Nexus S.'</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'Motorola XOOM™ with Wi-Fi'</span>,</div><div class="line">      <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'MOTOROLA XOOM™'</span>,</div><div class="line">      <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">    &#125;</div><div class="line">  ];</div><div class="line">  $scope.name = <span class="string">'joke'</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><h3 id="1-x"><a href="#1-x" class="headerlink" title="1.x"></a>1.x</h3><h4 id="定义一个component"><a href="#定义一个component" class="headerlink" title="定义一个component"></a>定义一个component</h4><p>新建一个phone-list.component.js从而定义一个component</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">angular.</div><div class="line"><span class="comment">//phonecatApp为ng-app定义的作用域名</span></div><div class="line">  <span class="built_in">module</span>(<span class="string">'phonecatApp'</span>).</div><div class="line">  <span class="comment">//phoneList为模板的名称，使用方法&lt;phone-list&gt;&lt;/phone-list&gt;</span></div><div class="line">  component(<span class="string">'phoneList'</span>, &#123;</div><div class="line">  <span class="comment">//模板内容，渲染HTML</span></div><div class="line">    template:</div><div class="line">        <span class="string">'&lt;ul&gt;'</span> +</div><div class="line">          <span class="string">'&lt;li ng-repeat="phone in $ctrl.phones"&gt;'</span> +<span class="comment">//$ctrl为模板默认的控制器</span></div><div class="line">            <span class="string">'&lt;span&gt;&#123;&#123;phone.name&#125;&#125;&lt;/span&gt;'</span> +</div><div class="line">            <span class="string">'&lt;p&gt;&#123;&#123;phone.snippet&#125;&#125;&lt;/p&gt;'</span> +</div><div class="line">          <span class="string">'&lt;/li&gt;'</span> +</div><div class="line">        <span class="string">'&lt;/ul&gt;'</span>,</div><div class="line">        <span class="comment">//控制器内容</span></div><div class="line">    controller: <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this指代当前控制器</span></div><div class="line">      <span class="keyword">this</span>.phones = [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">'Nexus S'</span>,</div><div class="line">          <span class="attr">snippet</span>: <span class="string">'Fast just got faster with Nexus S.'</span></div><div class="line">        &#125;, &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">'Motorola XOOM™ with Wi-Fi'</span>,</div><div class="line">          <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">        &#125;, &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">'MOTOROLA XOOM™'</span>,</div><div class="line">          <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">        &#125;</div><div class="line">      ];</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>app.js实例ng-app定义的model</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'phonecatApp'</span>,[])</div></pre></td></tr></table></figure>
+<p>HTML文件中引用template</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;phone-list&gt;<span class="xml"><span class="tag">&lt;/<span class="name">phone-list</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h3 id="2-x版本"><a href="#2-x版本" class="headerlink" title="2.x版本"></a>2.x版本</h3><p>@Component定义一个组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">  <span class="attr">selector</span>: <span class="string">'my-app'</span>, <span class="comment">//组件的名称，被外部调用；</span></div><div class="line">  template:<span class="string">`</span></div><div class="line">    &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">  `</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>单个组件中的数据模型，template中的数据从AppComponent类中获取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line">  title = <span class="string">'Tour XXXX'</span>;</div><div class="line">  myHero = <span class="string">'xxx'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="文件组织和目录"><a href="#文件组织和目录" class="headerlink" title="文件组织和目录"></a>文件组织和目录</h3><p>为了让整个项目更加的清晰、方便后期的维护。我们不应该将所有的component写在一个文件中，所有的controller写在一个文件中，一个文件应该纯粹的只实现一个功能。并按照component的结构目录进行分类。如此一来，创建component的方式也会发生变化，不再将template和controller写在一个文件中，也不会绑定在同一module上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//phone-list.component.js</span></div><div class="line">angular.</div><div class="line">  module(<span class="string">'phoneList'</span>).<span class="comment">//绑定的是phone-list.module.js 中的实例</span></div><div class="line">  component(<span class="string">'phoneList'</span>, &#123;</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">'phone-list/phone-list.template.html'</span>,<span class="comment">//引用外部的HTML作为模板</span></div><div class="line">    controller: <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.phones = [....];</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//phone-list.module.js</span></div><div class="line">angular.module(<span class="string">'phoneList'</span>, []);</div><div class="line"></div><div class="line"><span class="comment">//在app.module.js中将phoneList添加到ng-app定义的module中</span></div><div class="line"><span class="comment">// Define the `phonecatApp` module</span></div><div class="line">angular.module(<span class="string">'phonecatApp'</span>, [</div><div class="line">  <span class="comment">// ...which depends on the `phoneList` module</span></div><div class="line">  <span class="string">'phoneList'</span></div><div class="line">]);</div></pre></td></tr></table></figure>
+<p>结构目录大致如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app/</div><div class="line">  phone-list/</div><div class="line">    phone-list.module.js</div><div class="line">    phone-list.component.js</div><div class="line">    phone-list.component.spec.js</div><div class="line">  app.module.js</div></pre></td></tr></table></figure>
+<h2 id="迭代过滤器"><a href="#迭代过滤器" class="headerlink" title="迭代过滤器"></a>迭代过滤器</h2><p>通过ng-model双向绑定控制器中的数据并使用filter过滤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-md-2"</span>&gt;</div><div class="line"> <span class="xml"><span class="comment">&lt;!--Sidebar content--&gt;</span></span></div><div class="line"> //双向绑定</div><div class="line"> Search: <span class="tag">&lt;<span class="name">input</span> <span class="attr">ng-model</span>=<span class="string">"$ctrl.query"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10"</span>&gt;</span></div><div class="line"> <span class="comment">&lt;!--Body content--&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"phones"</span>&gt;</span></div><div class="line"> //根据$ctrl.query迭代过滤</div><div class="line"> // orderBy: $ctrl.age 排序</div><div class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"phone in $ctrl.phones | filter:$ctrl.query"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;phone.name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;phone.snippet&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h2><h3 id="angular-1-x"><a href="#angular-1-x" class="headerlink" title="angular 1.x"></a>angular 1.x</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ng-model=<span class="string">"$ctrl.query"</span> </div><div class="line"><span class="comment">//ng-model = "valueModel"双向绑定 可由&#123;&#123;valueModel || '默认值'&#125;&#125;直接引用</span></div></pre></td></tr></table></figure>
+<h3 id="AngularJs-2"><a href="#AngularJs-2" class="headerlink" title="AngularJs 2"></a>AngularJs 2</h3><p>app.module.ts 中引入 FormsModule,并添加至imports数组中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  <span class="attr">imports</span>: [</div><div class="line">    BrowserModule,</div><div class="line">    FormsModule</div><div class="line">  ],</div><div class="line"> .....</div></pre></td></tr></table></figure></p>
+<p>然后通过[(ngModel)]=”变量名”进行绑定<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;FormsModule&#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span></div></pre></td></tr></table></figure></p>
+<h2 id="XHR和依赖注入"><a href="#XHR和依赖注入" class="headerlink" title="XHR和依赖注入"></a>XHR和依赖注入</h2><p>通过$http内建服务向你的Web服务器发起请求，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">controller: <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params">$http</span>) </span>&#123;</div><div class="line"> <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line"> self.orderProp = <span class="string">'age'</span>;</div><div class="line"><span class="comment">//$http返回一个promise对象</span></div><div class="line"> $http.get(<span class="string">'phones/phones.json'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">   self.phones = response.data;</div><div class="line"> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的方法定义控制器在压缩JS后将无法正常工作，可以采用以下的方式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">controller: [<span class="string">'$http'</span>,</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params">$http</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">    self.orderProp = <span class="string">'age'</span>;</div><div class="line"></div><div class="line">    $http.get(<span class="string">'phones/phones.json'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">      self.phones = response.data;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h2 id="通过ng-src添加图片"><a href="#通过ng-src添加图片" class="headerlink" title="通过ng-src添加图片"></a>通过ng-src添加图片</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">ng-src</span>=<span class="string">"&#123;&#123;phone.src&#125;&#125;"</span>&gt;</span> <span class="comment">&lt;!--设置图片，由Angular来对其进行解析--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/xx/&#123;&#123;&#125;&#125;"</span>&gt;</span> <span class="comment">&lt;!--在href中也可以通过双大括号的语法将其正确解析--&gt;</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AngularJs/" rel="tag"># AngularJs</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/14/Webpack学习笔记二/" rel="next" title="Webpack学习笔记二">
+                <i class="fa fa-chevron-left"></i> Webpack学习笔记二
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="辣鸡Coder" />
+          <p class="site-author-name" itemprop="name">辣鸡Coder</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AngularJs-1-x-窥探"><span class="nav-number">1.</span> <span class="nav-text">AngularJs 1.x 窥探</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ng-app标志"><span class="nav-number">1.1.</span> <span class="nav-text">ng-app标志</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angular-Templates"><span class="nav-number">1.2.</span> <span class="nav-text">Angular Templates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-number">1.3.</span> <span class="nav-text">Component</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-x"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.x</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义一个component"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">定义一个component</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-x版本"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.x版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件组织和目录"><span class="nav-number">1.3.3.</span> <span class="nav-text">文件组织和目录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代过滤器"><span class="nav-number">1.4.</span> <span class="nav-text">迭代过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#双向绑定"><span class="nav-number">1.5.</span> <span class="nav-text">双向绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#angular-1-x"><span class="nav-number">1.5.1.</span> <span class="nav-text">angular 1.x</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AngularJs-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">AngularJs 2</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XHR和依赖注入"><span class="nav-number">1.6.</span> <span class="nav-text">XHR和依赖注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过ng-src添加图片"><span class="nav-number">1.7.</span> <span class="nav-text">通过ng-src添加图片</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">辣鸡Coder</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("wsvVY4eXXKHmlsec5tCzMGm7-gzGzoHsz", "sv9Metx0eHoTNsJY8uEo8jLP");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

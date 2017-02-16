@@ -236,6 +236,161 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/16/1-x初窥/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="辣鸡Coder">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="普通程序员的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/16/1-x初窥/" itemprop="url">
+                  angularjs_1.x初窥
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-02-16T21:38:23+08:00">
+                2017-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/02/16/1-x初窥/" class="leancloud_visitors" data-flag-title="angularjs_1.x初窥">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="AngularJs-1-x-窥探"><a href="#AngularJs-1-x-窥探" class="headerlink" title="AngularJs 1.x 窥探"></a>AngularJs 1.x 窥探</h1><blockquote>
+<p>根据AngularJs 1.x<a href="https://docs.angularjs.org/tutorial" target="_blank" rel="external">官方教程</a>整理笔记（step0-step8）</p>
+</blockquote>
+<h2 id="ng-app标志"><a href="#ng-app标志" class="headerlink" title="ng-app标志"></a>ng-app标志</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">ng-app</span>=<span class="string">"phoneApp"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>申明整个html都是angular的作用域，同时也可以在局部进行申明。例如<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">ng-app</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="Angular-Templates"><a href="#Angular-Templates" class="headerlink" title="Angular Templates"></a>Angular Templates</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 定义一个phonecatApp的实例，与ng-app作用域进行绑定</span></div><div class="line"><span class="keyword">var</span> phonecatApp = angular.module(<span class="string">'phonecatApp'</span>, []);</div><div class="line"></div><div class="line"><span class="comment">// Define the `PhoneListController` controller on the `phonecatApp` module</span></div><div class="line">phonecatApp.controller(<span class="string">'PhoneListController'</span>, <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params">$scope</span>) </span>&#123;</div><div class="line"><span class="comment">// 绑定在$scope上的变量可以直接被模版获取</span></div><div class="line">  $scope.phones = [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'Nexus S'</span>,</div><div class="line">      <span class="attr">snippet</span>: <span class="string">'Fast just got faster with Nexus S.'</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'Motorola XOOM™ with Wi-Fi'</span>,</div><div class="line">      <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">    &#125;, &#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'MOTOROLA XOOM™'</span>,</div><div class="line">      <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">    &#125;</div><div class="line">  ];</div><div class="line">  $scope.name = <span class="string">'joke'</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><h3 id="1-x"><a href="#1-x" class="headerlink" title="1.x"></a>1.x</h3><h4 id="定义一个component"><a href="#定义一个component" class="headerlink" title="定义一个component"></a>定义一个component</h4><p>新建一个phone-list.component.js从而定义一个component</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">angular.</div><div class="line"><span class="comment">//phonecatApp为ng-app定义的作用域名</span></div><div class="line">  <span class="built_in">module</span>(<span class="string">'phonecatApp'</span>).</div><div class="line">  <span class="comment">//phoneList为模板的名称，使用方法&lt;phone-list&gt;&lt;/phone-list&gt;</span></div><div class="line">  component(<span class="string">'phoneList'</span>, &#123;</div><div class="line">  <span class="comment">//模板内容，渲染HTML</span></div><div class="line">    template:</div><div class="line">        <span class="string">'&lt;ul&gt;'</span> +</div><div class="line">          <span class="string">'&lt;li ng-repeat="phone in $ctrl.phones"&gt;'</span> +<span class="comment">//$ctrl为模板默认的控制器</span></div><div class="line">            <span class="string">'&lt;span&gt;&#123;&#123;phone.name&#125;&#125;&lt;/span&gt;'</span> +</div><div class="line">            <span class="string">'&lt;p&gt;&#123;&#123;phone.snippet&#125;&#125;&lt;/p&gt;'</span> +</div><div class="line">          <span class="string">'&lt;/li&gt;'</span> +</div><div class="line">        <span class="string">'&lt;/ul&gt;'</span>,</div><div class="line">        <span class="comment">//控制器内容</span></div><div class="line">    controller: <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//this指代当前控制器</span></div><div class="line">      <span class="keyword">this</span>.phones = [</div><div class="line">        &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">'Nexus S'</span>,</div><div class="line">          <span class="attr">snippet</span>: <span class="string">'Fast just got faster with Nexus S.'</span></div><div class="line">        &#125;, &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">'Motorola XOOM™ with Wi-Fi'</span>,</div><div class="line">          <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">        &#125;, &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">'MOTOROLA XOOM™'</span>,</div><div class="line">          <span class="attr">snippet</span>: <span class="string">'The Next, Next Generation tablet.'</span></div><div class="line">        &#125;</div><div class="line">      ];</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>app.js实例ng-app定义的model</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">angular.module(<span class="string">'phonecatApp'</span>,[])</div></pre></td></tr></table></figure>
+<p>HTML文件中引用template</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;phone-list&gt;<span class="xml"><span class="tag">&lt;/<span class="name">phone-list</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<h3 id="2-x版本"><a href="#2-x版本" class="headerlink" title="2.x版本"></a>2.x版本</h3><p>@Component定义一个组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Component &#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</div><div class="line"></div><div class="line">@Component(&#123;</div><div class="line">  <span class="attr">selector</span>: <span class="string">'my-app'</span>, <span class="comment">//组件的名称，被外部调用；</span></div><div class="line">  template:<span class="string">`</span></div><div class="line">    &lt;h1&gt;&#123;&#123;title&#125;&#125;&lt;/h1&gt;</div><div class="line">  `</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>单个组件中的数据模型，template中的数据从AppComponent类中获取</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">AppComponent</span> </span>&#123;</div><div class="line">  title = <span class="string">'Tour XXXX'</span>;</div><div class="line">  myHero = <span class="string">'xxx'</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="文件组织和目录"><a href="#文件组织和目录" class="headerlink" title="文件组织和目录"></a>文件组织和目录</h3><p>为了让整个项目更加的清晰、方便后期的维护。我们不应该将所有的component写在一个文件中，所有的controller写在一个文件中，一个文件应该纯粹的只实现一个功能。并按照component的结构目录进行分类。如此一来，创建component的方式也会发生变化，不再将template和controller写在一个文件中，也不会绑定在同一module上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//phone-list.component.js</span></div><div class="line">angular.</div><div class="line">  module(<span class="string">'phoneList'</span>).<span class="comment">//绑定的是phone-list.module.js 中的实例</span></div><div class="line">  component(<span class="string">'phoneList'</span>, &#123;</div><div class="line">    <span class="attr">templateUrl</span>: <span class="string">'phone-list/phone-list.template.html'</span>,<span class="comment">//引用外部的HTML作为模板</span></div><div class="line">    controller: <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">this</span>.phones = [....];</div><div class="line">    &#125;</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//phone-list.module.js</span></div><div class="line">angular.module(<span class="string">'phoneList'</span>, []);</div><div class="line"></div><div class="line"><span class="comment">//在app.module.js中将phoneList添加到ng-app定义的module中</span></div><div class="line"><span class="comment">// Define the `phonecatApp` module</span></div><div class="line">angular.module(<span class="string">'phonecatApp'</span>, [</div><div class="line">  <span class="comment">// ...which depends on the `phoneList` module</span></div><div class="line">  <span class="string">'phoneList'</span></div><div class="line">]);</div></pre></td></tr></table></figure>
+<p>结构目录大致如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">app/</div><div class="line">  phone-list/</div><div class="line">    phone-list.module.js</div><div class="line">    phone-list.component.js</div><div class="line">    phone-list.component.spec.js</div><div class="line">  app.module.js</div></pre></td></tr></table></figure>
+<h2 id="迭代过滤器"><a href="#迭代过滤器" class="headerlink" title="迭代过滤器"></a>迭代过滤器</h2><p>通过ng-model双向绑定控制器中的数据并使用filter过滤</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"col-md-2"</span>&gt;</div><div class="line"> <span class="xml"><span class="comment">&lt;!--Sidebar content--&gt;</span></span></div><div class="line"> //双向绑定</div><div class="line"> Search: <span class="tag">&lt;<span class="name">input</span> <span class="attr">ng-model</span>=<span class="string">"$ctrl.query"</span> /&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10"</span>&gt;</span></div><div class="line"> <span class="comment">&lt;!--Body content--&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"phones"</span>&gt;</span></div><div class="line"> //根据$ctrl.query迭代过滤</div><div class="line"> // orderBy: $ctrl.age 排序</div><div class="line">   <span class="tag">&lt;<span class="name">li</span> <span class="attr">ng-repeat</span>=<span class="string">"phone in $ctrl.phones | filter:$ctrl.query"</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;&#123;phone.name&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;phone.snippet&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="双向绑定"><a href="#双向绑定" class="headerlink" title="双向绑定"></a>双向绑定</h2><h3 id="angular-1-x"><a href="#angular-1-x" class="headerlink" title="angular 1.x"></a>angular 1.x</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ng-model=<span class="string">"$ctrl.query"</span> </div><div class="line"><span class="comment">//ng-model = "valueModel"双向绑定 可由&#123;&#123;valueModel || '默认值'&#125;&#125;直接引用</span></div></pre></td></tr></table></figure>
+<h3 id="AngularJs-2"><a href="#AngularJs-2" class="headerlink" title="AngularJs 2"></a>AngularJs 2</h3><p>app.module.ts 中引入 FormsModule,并添加至imports数组中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@NgModule(&#123;</div><div class="line">  <span class="attr">imports</span>: [</div><div class="line">    BrowserModule,</div><div class="line">    FormsModule</div><div class="line">  ],</div><div class="line"> .....</div></pre></td></tr></table></figure></p>
+<p>然后通过[(ngModel)]=”变量名”进行绑定<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;FormsModule&#125; <span class="keyword">from</span> <span class="string">'@angular/forms'</span></div></pre></td></tr></table></figure></p>
+<h2 id="XHR和依赖注入"><a href="#XHR和依赖注入" class="headerlink" title="XHR和依赖注入"></a>XHR和依赖注入</h2><p>通过$http内建服务向你的Web服务器发起请求，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">controller: <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params">$http</span>) </span>&#123;</div><div class="line"> <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line"> self.orderProp = <span class="string">'age'</span>;</div><div class="line"><span class="comment">//$http返回一个promise对象</span></div><div class="line"> $http.get(<span class="string">'phones/phones.json'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">   self.phones = response.data;</div><div class="line"> &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面的方法定义控制器在压缩JS后将无法正常工作，可以采用以下的方式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">controller: [<span class="string">'$http'</span>,</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">PhoneListController</span>(<span class="params">$http</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> self = <span class="keyword">this</span>;</div><div class="line">    self.orderProp = <span class="string">'age'</span>;</div><div class="line"></div><div class="line">    $http.get(<span class="string">'phones/phones.json'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</div><div class="line">      self.phones = response.data;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h2 id="通过ng-src添加图片"><a href="#通过ng-src添加图片" class="headerlink" title="通过ng-src添加图片"></a>通过ng-src添加图片</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">ng-src</span>=<span class="string">"&#123;&#123;phone.src&#125;&#125;"</span>&gt;</span> <span class="comment">&lt;!--设置图片，由Angular来对其进行解析--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#/xx/&#123;&#123;&#125;&#125;"</span>&gt;</span> <span class="comment">&lt;!--在href中也可以通过双大括号的语法将其正确解析--&gt;</span></div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/14/Webpack学习笔记二/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -331,7 +486,7 @@
 <p>如果你想让一个模块能够被其他任何模块所得到，例如$和jQuery。你除了需要require(“jquery”)之外还应该使用<a href="http://webpack.github.io/docs/shimming-modules.html" target="_blank" rel="external">ProvidePlugin</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line">$(<span class="string">'h1'</span>).text(<span class="string">'Hello World'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// webpack.config.js</span></div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./main.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.ProvidePlugin(&#123;</div><div class="line">      <span class="attr">$</span>: <span class="string">"jquery"</span>,</div><div class="line">      <span class="attr">jQuery</span>: <span class="string">"jquery"</span>,</div><div class="line">      <span class="string">"window.jQuery"</span>: <span class="string">"jquery"</span></div><div class="line">    &#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <h3 id="Exposing-global-variables"><a href="#Exposing-global-variables" class="headerlink" title="Exposing global variables"></a>Exposing global variables</h3><p>如果你想使用一些全局变量，但是不想这些变量在bundle的时候包括在里面。你可以开启在webpack的配置文件中开启externals.<a href="http://webpack.github.io/docs/library-and-externals.html" target="_blank" rel="external">文档</a><br>例如你有一个data.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> data = <span class="string">"Hello"</span></div></pre></td></tr></table></figure></p>
 <p>我们能够将data暴露出来，成为全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./main.jsx'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>:[</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js[x]?$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">        <span class="attr">query</span>: &#123;</div><div class="line">          <span class="attr">presets</span>: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">externals</span>: &#123;</div><div class="line">    <span class="comment">// require('data') is external and available</span></div><div class="line">    <span class="comment">//  on the global var data</span></div><div class="line">    <span class="string">'data'</span>: <span class="string">'data'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>现在，你可以在js中像引用模块变量一样加载data，但是它实际上是一个全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.jsx</span></div><div class="line"><span class="keyword">var</span> data = <span class="built_in">require</span>(<span class="string">'data'</span>);</div><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react'</span>);</div><div class="line"><span class="keyword">var</span> ReactDOM = <span class="built_in">require</span>(<span class="string">'react-dom'</span>);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;h1&gt;&#123;data&#125;&lt;/h1&gt;,</div><div class="line">  <span class="built_in">document</span>.body</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>现在，你可以在js中像引用模块变量一样加载data，但是它实际上是一个全局变量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.jsx</span></div><div class="line"><span class="keyword">var</span> data = <span class="built_in">require</span>(<span class="string">'data'</span>);</div><div class="line"><span class="keyword">var</span> React = <span class="built_in">require</span>(<span class="string">'react'</span>);</div><div class="line"><span class="keyword">var</span> ReactDOM = <span class="built_in">require</span>(<span class="string">'react-dom'</span>);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;data&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span>,</div><div class="line">  <span class="built_in">document</span>.body</div><div class="line">);</div></pre></td></tr></table></figure></p>
 <h3 id="Hot-Module-Replacement"><a href="#Hot-Module-Replacement" class="headerlink" title="Hot Module Replacement"></a>Hot Module Replacement</h3><p>Hot Module Replacement()热加载能够在修改后对应用进行实时加载而不需要重新加载，你能够使用两种方法开启热加载<br>（1）在命令行追加“–hot”和”–inline“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack-dev-server --hot --inline</div></pre></td></tr></table></figure></p>
 <ul>
 <li>–hot: 添加HotModuleReplacementPlugin并似的服务进入热加载模式</li>
@@ -342,6 +497,7 @@
 </ul>
 <p>webpack的配置文件就像下面这样<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: [</div><div class="line">    <span class="string">'webpack/hot/dev-server'</span>,</div><div class="line">    <span class="string">'webpack-dev-server/client?http://localhost:8080'</span>,</div><div class="line">    <span class="string">'./index.js'</span></div><div class="line">  ],</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    <span class="attr">publicPath</span>: <span class="string">'/static/'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</div><div class="line">  ],</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.jsx?$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel-loader'</span>,</div><div class="line">      <span class="attr">query</span>: &#123;</div><div class="line">        <span class="attr">presets</span>: [<span class="string">'es2015'</span>, <span class="string">'react'</span>]</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">include</span>: path.join(__dirname, <span class="string">'.'</span>)</div><div class="line">    &#125;]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <p>现在我们可以像之前一样启动服务了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack-dev-server</div></pre></td></tr></table></figure></p>
+<p>其实还有很多配置参数没有讲到，<a href="https://github.com/webpack/docs/wiki/configuration#configuration-object-content" target="_blank" rel="external">配置项参考文档</a></p>
 
           
         
@@ -998,8 +1154,26 @@
 <li>组合式继承</li>
 <li>原型式继承</li>
 <li>寄生式继承</li>
-<li>寄生组合式继承<br>相对来说，组合式继承和寄生组合式继承来的更加推荐，在这两者中后者优于前者。其他的几种继承实现方式或多或少都有些许存在的问题。</li>
+<li>寄生组合式继承<br>相对来说，组合式继承和寄生组合式继承来的更加推荐，在这两者中后者优于前者。其他的几种继承实现方式或多或少都有些许存在的问题。<h2 id="在项目开发完成之后，根据雅虎性能优化规则，需要对html，JS，CSS，图片需要做出怎样的处理？是否可以借助构建工具实现自动化？"><a href="#在项目开发完成之后，根据雅虎性能优化规则，需要对html，JS，CSS，图片需要做出怎样的处理？是否可以借助构建工具实现自动化？" class="headerlink" title="在项目开发完成之后，根据雅虎性能优化规则，需要对html，JS，CSS，图片需要做出怎样的处理？是否可以借助构建工具实现自动化？"></a>在项目开发完成之后，根据雅虎性能优化规则，需要对html，JS，CSS，图片需要做出怎样的处理？是否可以借助构建工具实现自动化？</h2><a href="https://developer.yahoo.com/performance/rules.html" target="_blank" rel="external">雅虎优化规则</a>.<br>大致需要做如下处理：<h3 id="减少Http请求"><a href="#减少Http请求" class="headerlink" title="减少Http请求"></a>减少Http请求</h3></li>
 </ol>
+<ul>
+<li>合并脚本和样式表</li>
+<li>Css Sprites</li>
+<li>区分主次，分层加载<h3 id="减少请求带宽"><a href="#减少请求带宽" class="headerlink" title="减少请求带宽"></a>减少请求带宽</h3></li>
+<li>开启GZip</li>
+<li>最小化js脚本和css样式表</li>
+<li>移除重复的脚本</li>
+<li>图像优化<h3 id="页面结构"><a href="#页面结构" class="headerlink" title="页面结构"></a>页面结构</h3>样式表放在顶部，脚本位于底部。尽早刷新内容，避免空白等待。<br>脚本和样式表的合并以及最小化、图像优化等都可以借助webpackage或是gulp等构建工具实现，例如通过postcss配合autoprefixer, cssnano插件可以对样式表进行浏览器私有前缀补全以及压缩最小化等操作；<h2 id="说说前端中的事件流？"><a href="#说说前端中的事件流？" class="headerlink" title="说说前端中的事件流？"></a>说说前端中的事件流？</h2>前端事件流分为3个部分，即 事件捕获阶段、处于目标阶段、事件冒泡阶段。<br>当一个DOM事件被触发的时候，它并不是简单的直接从目标上触发，而是会经历以上三个阶段。<br>DOM事件被触发，首先从文档的根节点流向目标节点（捕获阶段）；然后到达目标节点，触发事件（目标阶段）；最后再回溯到文档的根节点（冒泡阶段）。<br>在冒泡阶段我们可以对元素进行事件委托而不必为每一个元素绑定事件，例如对ul下的li进行事件委托。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ulDom.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  e = <span class="built_in">window</span>.e || e</div><div class="line">  <span class="keyword">if</span> ( e.target.nodeName.toUpperCase() === <span class="string">'LI'</span> ) &#123;</div><div class="line">    <span class="comment">//.....</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果对mouseover以及mouseout使用事件代理的时候，li下面还有子元素，就会发生一些坑爹的事情。比如从li移入子元素会触发mouseout，从子元素移入li会触发mouseover，我们在进行操作之前需要对元素的parent进行判断，过滤掉一些不需要操作的情况。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ulDom.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">  e = <span class="built_in">window</span>.e || e</div><div class="line">  <span class="keyword">let</span> s = e.fromElement || e.relatedTraget</div><div class="line">  <span class="comment">//判断s是否为当前元素的父元素</span></div><div class="line">  <span class="keyword">let</span> reg = <span class="keyword">this</span>.compareDocumentPosition(s);</div><div class="line">  <span class="comment">// IE 下使用 this.contains(s) 来判断，其返回值为true和false</span></div><div class="line">  <span class="keyword">if</span> (!(reg == <span class="number">20</span> || reg == <span class="number">0</span>)) &#123;</div><div class="line">    <span class="comment">//不是父元素就执行操作...</span></div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="JS-中的原型链是什么？"><a href="#JS-中的原型链是什么？" class="headerlink" title="JS 中的原型链是什么？"></a>JS 中的原型链是什么？</h2><p>JS中，每创建一个函数都会有一个原型（prototype）对象，原型对象中有一个constrictor属性指向其自身。每个对象都有一个隐式原型[[prototype]]（部分浏览器将其实现为<strong>proto</strong>）,[[prototype]]指向创建这个对象的函数的prototype，从而构成原型链。<br>InstanceOf用来判断一个对象是否是一个函数的引用，也就是判断属性是自身的还是从原型链上继承而来的。<br>原型链还能用来模拟类的继承等</p>
+<h2 id="有一个长度为100的数组，请以优雅的方式求出该数组的前10个元素之和"><a href="#有一个长度为100的数组，请以优雅的方式求出该数组的前10个元素之和" class="headerlink" title="有一个长度为100的数组，请以优雅的方式求出该数组的前10个元素之和"></a>有一个长度为100的数组，请以优雅的方式求出该数组的前10个元素之和</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSum</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> arr.splice(<span class="number">0</span>,<span class="number">10</span>).reduce(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> a + b</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="了解过flex布局吗？说说它和传统布局的有何不同？"><a href="#了解过flex布局吗？说说它和传统布局的有何不同？" class="headerlink" title="了解过flex布局吗？说说它和传统布局的有何不同？"></a>了解过flex布局吗？说说它和传统布局的有何不同？</h2><h2 id="移动端的图片优化实践方式有哪些？"><a href="#移动端的图片优化实践方式有哪些？" class="headerlink" title="移动端的图片优化实践方式有哪些？"></a>移动端的图片优化实践方式有哪些？</h2><p>这个我母鸡啊，下面凭感觉<br>移动端使用rem作为图片的大小单位；<br>图片格式方面采用WebP，对不支持的浏览器进行适配；<br>根据不同的网络环境，加载不同质量的图片；</p>
+<h2 id="请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象"><a href="#请编写一个JavaScript函数-parseQueryString，它的用途是把URL参数解析为一个对象" class="headerlink" title="请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象"></a>请编写一个JavaScript函数 parseQueryString，它的用途是把URL参数解析为一个对象</h2><p>利用a标签配合正则表达式将URL进行解析<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">parseUrl</span>(<span class="params">url</span>)</span>&#123;</div><div class="line">  url = url || <span class="string">'http://abc.com:8080/dir/index.html?id=255&amp;m=hello#top'</span></div><div class="line">  <span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</div><div class="line">  a.href = url </div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">source</span>: url,</div><div class="line">    <span class="attr">protocol</span>: a.protocol.replace(<span class="string">':'</span>,<span class="string">''</span>),</div><div class="line">    <span class="attr">host</span>: a.hostname,</div><div class="line">    <span class="attr">port</span>: a.port,</div><div class="line">    <span class="attr">query</span>: a.search,</div><div class="line">    <span class="attr">prams</span>: (<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">      <span class="keyword">let</span> query = a.search.replace(<span class="regexp">/^\?/</span>, <span class="string">''</span>).split(<span class="string">'&amp;'</span>), </div><div class="line">          result = &#123;&#125;,</div><div class="line">          len = query.length,</div><div class="line">          temp = []</div><div class="line">          i = <span class="number">0</span></div><div class="line">      <span class="keyword">for</span>(; i&lt;len; i++) &#123;</div><div class="line">        <span class="keyword">if</span> (!query[i])&#123;</div><div class="line">          <span class="keyword">continue</span></div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(temp)</div><div class="line">        temp = query[i].split(<span class="string">'='</span>)</div><div class="line">        result[temp[<span class="number">0</span>]] = temp[<span class="number">1</span>]</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">return</span> result</div><div class="line">    &#125;)(),</div><div class="line">    <span class="attr">file</span>: (a.pathname.match(<span class="regexp">/([^/?#]+)$/i</span>) || [,<span class="string">''</span>])[<span class="number">1</span>],</div><div class="line">    <span class="attr">hash</span>: a.hash.replace(<span class="string">'#'</span>,<span class="string">''</span>),</div><div class="line">    <span class="attr">path</span>: a.pathname.replace(<span class="regexp">/^([^/])/</span>,<span class="string">'/$1'</span>),</div><div class="line">    <span class="attr">relative</span>: (a.href.match(<span class="regexp">/tps?:\/[^/]+(.+)/</span>) || [,<span class="string">''</span>])[<span class="number">1</span>],</div><div class="line">    <span class="attr">segments</span>: a.pathname.replace(<span class="regexp">/^\//</span>,<span class="string">''</span>).split(<span class="string">'/'</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(parseUrl())</div></pre></td></tr></table></figure></p>
+<h2 id="xss和csrf分别是什么？"><a href="#xss和csrf分别是什么？" class="headerlink" title="xss和csrf分别是什么？"></a>xss和csrf分别是什么？</h2><p>XSS是网站注入攻击的一种，是实现SCRF诸多方式中的一种。<br>XSS也就是跨站脚本攻击,本质是HTML注入，通过输入特殊的内容，让服务器端识别为指令进行执行。<br>CSRF是伪造请求，冒充用户在站内的正常操作。</p>
+<h2 id="说说前端如何解决异步回调地狱？"><a href="#说说前端如何解决异步回调地狱？" class="headerlink" title="说说前端如何解决异步回调地狱？"></a>说说前端如何解决异步回调地狱？</h2><p>使用Promise、引入Anync辅助库、ES6-Generator</p>
+<h2 id="淘宝那里的商品项，如图片，滚动到了才加载，你知道怎么实现么"><a href="#淘宝那里的商品项，如图片，滚动到了才加载，你知道怎么实现么" class="headerlink" title="淘宝那里的商品项，如图片，滚动到了才加载，你知道怎么实现么"></a>淘宝那里的商品项，如图片，滚动到了才加载，你知道怎么实现么</h2><p>懒加载，首先加载首屏的内容。当用户往下滚动，有需求的时候在对剩下的模块进行初始化。</p>
 
           
         
@@ -1266,9 +1440,9 @@
         
           
             <blockquote>
-<p>以前对于负值Margin一直有一种迷之自信，认为相当于一个反方向的属性而已，直到最近复习一些布局的时候才发现自己是多么的孤陋寡闻。感谢大漠的<a href="http://www.w3cplus.com/css/the-definitive-guide-to-using-negative-margins.html" target="_blank" rel="external">负margin用法权威指南</a>以及无双的<a href="http://www.cnblogs.com/2050/archive/2012/08/13/2636467.html#2457812" target="_blank" rel="external">CSS布局奇淫巧计之-强大的负边距</a>两篇文章让我对负值margin和布局有更深入的了解</p>
+<p>以前对于负值Margin一直有一种迷之自信，认为相当于一个反方向的属性而已，直到最近复习一些布局的时候才发现自己是多么的孤陋寡闻。感谢大漠的<a href="http://www.w3cplus.com/css/the-definitive-guide-to-using-negative-margins.html" target="_blank" rel="external">负margin用法权威指南</a>以及无双的<a href="http://www.cnblogs.com/2050/archive/2012/08/13/2636467.html#2457812" target="_blank" rel="external">CSS布局奇淫巧计之-强大的负边距</a>两篇文章让我对负值margin和布局有更深入的了解</p>
 </blockquote>
-<h2 id="什么是负margin"><a href="#什么是负margin" class="headerlink" title="什么是负margin"></a>什么是负margin</h2><p>Css中margin表示元素与其相邻元素之间的距离，负margin也就是margin的取值为负，一个负值margin长这样<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#content</span> &#123;<span class="attribute">margin-left</span>: -<span class="number">10rem</span>;&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="什么是负margin"><a href="#什么是负margin" class="headerlink" title="什么是负margin"></a>什么是负margin</h2><p>Css中margin表示元素与其相邻元素之间的距离，负margin也就是margin的取值为负，一个负值margin长这样<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#content</span> &#123;<span class="attribute">margin-left</span>: -<span class="number">10rem</span>;&#125;</div></pre></td></tr></table></figure></p>
 <blockquote>
 <p>以前很少用负margin值，因为不了解所以根本不会想到。负margin其实能做很多事情，下面是负margin几个注意的地方。</p>
 </blockquote>
@@ -1677,147 +1851,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/01/Vue2-0-ES6实践总结/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="辣鸡Coder">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.jpg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="普通程序员的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/01/Vue2-0-ES6实践总结/" itemprop="url">
-                  Vue2.0-DEMO-摄影作品展示网站
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-01T15:20:01+08:00">
-                2016-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/12/01/Vue2-0-ES6实践总结/" class="leancloud_visitors" data-flag-title="Vue2.0-DEMO-摄影作品展示网站">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>​    用Vue2.0搞了一个摄影作品展示网站作为DEMO，没有用Vue-cli脚手架（脚手架真方便）。都是一些基础的东西，考虑到数据大多都是静态文件所以将数据存放在七牛云上首次访问网站时通过WebStorage在本地存储以便在搜索、二次登录的时候进行快速渲染。网站还有许多问题，虽然能在PC和Mobile端自适应但是效果好像不是很好。</p>
-<p>​    <a href="http://ohlyett59.bkt.clouddn.com/index.html/" target="_blank" rel="external">DEMO主页</a></p>
-<p>​    <a href="http://ohlyett59.bkt.clouddn.com/admin/index.html/" target="_blank" rel="external">管理员入口</a></p>
-<p>​    <a href="https://github.com/HuSmart/ImgsSite" target="_blank" rel="external">Github</a></p>
-<p>想写的详细点写了半天感觉写不出什么来，咳咳，谁叫我是一个不善言辞的人</p>
-<h3 id="数据结构设计"><a href="#数据结构设计" class="headerlink" title="数据结构设计"></a>数据结构设计</h3><ul>
-<li>网站基础数据：网站的Title、Subtitle和首页大图等信息</li>
-<li>影视分类数据：摄影作品按照分类来进行存储，包含分类名称，描述，分类的封面等信息</li>
-<li>相册数据：相册必定属于某一分类下，不会单独存在。相册数据有名称、描述、所属分类以及照片在七牛上的URL</li>
-<li>照片数据：照片以URL存储在相册数据的photos字段中</li>
-</ul>
-<h3 id="界面设计"><a href="#界面设计" class="headerlink" title="界面设计"></a>界面设计</h3><p>​    Vue组件化的编程方式用着非常爽，像分类、相册都构成模块之后不仅能够很方便的进行复用，维护起来也很方便。设计的时候将大部分需要复用的元素都进行了组件化并放在component文件夹中</p>
-<p>route-component中放置路由组件：负责将组件进行组合呈现出页面效果，并处相对应的理业务逻辑；entries中分别存放管理员页面、初始化页面、和主页的入口文件，完成后经由Webpack打包后一个SPA的页面就呈现了</p>
-<p><img src="/images/2016-12-3.jpg" alt="111"></p>
-<p>​         </p>
-<p>写不出来了…..</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1863,7 +1896,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1873,7 +1906,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
