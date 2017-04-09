@@ -236,6 +236,154 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/27/神奇的负值Margin/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="辣鸡Coder">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="普通程序员的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="普通程序员的博客" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/27/神奇的负值Margin/" itemprop="url">
+                  神奇的负值Margin
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-27T18:19:37+08:00">
+                2016-12-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/27/神奇的负值Margin/" class="leancloud_visitors" data-flag-title="神奇的负值Margin">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>以前对于负值Margin一直有一种迷之自信，认为相当于一个反方向的属性而已，直到最近复习一些布局的时候才发现自己是多么的孤陋寡闻。感谢大漠的<a href="http://www.w3cplus.com/css/the-definitive-guide-to-using-negative-margins.html" target="_blank" rel="external">负margin用法权威指南</a>以及无双的<a href="http://www.cnblogs.com/2050/archive/2012/08/13/2636467.html#2457812" target="_blank" rel="external">CSS布局奇淫巧计之-强大的负边距</a>两篇文章让我对负值margin和布局有更深入的了解</p>
+</blockquote>
+<h2 id="什么是负margin"><a href="#什么是负margin" class="headerlink" title="什么是负margin"></a>什么是负margin</h2><p>Css中margin表示元素与其相邻元素之间的距离，负margin也就是margin的取值为负，一个负值margin长这样<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#content</span> &#123;<span class="attribute">margin-left</span>: -<span class="number">10rem</span>;&#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以前很少用负margin值，因为不了解所以根本不会想到。负margin其实能做很多事情，下面是负margin几个注意的地方。</p>
+</blockquote>
+<ol>
+<li>负margin是绝对标准的CSS</li>
+<li>不脱离文档流！负margin不会破坏页面的文档流，当你使用负margin上移一个元素的时，其后的元素会紧接着上移。</li>
+<li>完美的兼容性：几乎所有现在浏览器都支持负值margin，甚至连IE6在大多情况下也能够支持</li>
+<li>Dreamweaver不会在设计试图上解析负margin，不过我想现在应该没多少人用DW了吧</li>
+</ol>
+<h2 id="负值margin对state元素的影响"><a href="#负值margin对state元素的影响" class="headerlink" title="负值margin对state元素的影响"></a>负值margin对state元素的影响</h2><p>state元素也就是标准文档流下的元素，没有设置浮动、定位等属性，margin有上左下右四个方向的值可以进行设置。<br>如果元素没有设置width属性或者宽度为auto时，margin-left、margin-right的负值会改变元素的宽度，也就是向左向右增加。<br>元素指定宽度的时影响效果如下:</p>
+<ol>
+<li>当margin-top、margin-left设置了负margin时，元素会像左边👈或上边👆移动margin的值个单位；</li>
+<li>当设置margin-right、margin-bottom的时候，元素并不会像top、left一样移动元素，而是将后面元素向左向上移动margin值个单位，这样就会后面的元素上移，间距减小，从而可能覆盖当前元素。css会认为元素的宽度减少了，然后让后面的元素补位，元素实际的宽度并没有改变。</li>
+</ol>
+<h2 id="负值margin对浮动元素的影响"><a href="#负值margin对浮动元素的影响" class="headerlink" title="负值margin对浮动元素的影响"></a>负值margin对浮动元素的影响</h2><p>负margin对浮动元素和state元素相差的不多，同样的也是移动元素或者是移动后面的元素。仅仅有一点区别，根据元素浮动的方向不同，margin-left、margin-right产生的效果也会有所区别。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div1"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"div2"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>两个div均为左浮动，此时margin-left使得div1向左移动了10px，由于margin-right的原因，div2向左移动了20个像素;<br>当div为右浮动时，margin-right让div1向右移动了20像素，margin-left使div2移动了10px。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.div1</span>, <span class="selector-class">.div2</span> &#123;</div><div class="line">  <span class="attribute">width</span>:<span class="number">100px</span>;</div><div class="line">  <span class="attribute">height</span>:<span class="number">100px</span>;</div><div class="line">  <span class="comment">/* float:left;  */</span></div><div class="line">  <span class="attribute">float</span>:right; </div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div1</span> &#123;</div><div class="line">  <span class="attribute">background</span>: red;</div><div class="line">  <span class="attribute">margin-left</span>: -<span class="number">10px</span>;</div><div class="line">  <span class="attribute">margin-right</span>: -<span class="number">20px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.div2</span> &#123;</div><div class="line">  <span class="attribute">background</span>: blue;</div><div class="line">  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>总之，负margin对浮动元素的影响根据浮动的方向而变化，当设置与浮动方向相同的负margin时，能够让元素向浮动方向移动margin的值个单位；设置与浮动方向相反的负margin属性时，减少元素在流上的宽度，其后的元素会进行补位，覆盖前一个元素。</p>
+<h2 id="对绝对定位元素的影响"><a href="#对绝对定位元素的影响" class="headerlink" title="对绝对定位元素的影响"></a>对绝对定位元素的影响</h2><p>由于绝对定位的top、left等值是指元素自身的边界到最近的以设置定位属性的祖先元素的距离，当margin为正时，元素的边界会向外扩张；为负值时向内收缩。</p>
+<p>有疑问的可以通过顶部的链接查看大神们的原博，他们讲的更细致也更明白。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/22/Css浮动清除的几种方法/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1064,7 +1212,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1074,7 +1222,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
