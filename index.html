@@ -458,13 +458,14 @@
       
         
           
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>刚入职新公司一个月比较忙，临时被安排需要做一个IOS端内嵌的H5页面模板，同时也需要在微信端能使用。下午本已实现，谁料临近下班的时候测试提出二次分享链接后，页面无法在微信端正常显示，白花花的一片。</p>
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>临时被安排需要做一个IOS端内嵌的H5页面模板，同时也需要在微信端能使用。下午本已实现，谁料临近下班的时候测试提出二次分享链接后，页面无法在微信端正常显示，白花花的一片。</p>
 <h3 id="定位问题"><a href="#定位问题" class="headerlink" title="定位问题"></a>定位问题</h3><p>将二次分享的链接单独打开来，在自己的6sp上一切正常。</p>
 <p>由于同事的是安卓系统，遂拿来测试安卓机，同样无法显示，定位问题为安卓系统下页面渲染的问题，排除分享链接所致。</p>
 <p>微信开发者工具没有报错信息，查看DOM发现均没有满足<code>ng-if</code>的条件；怀疑没有执行方法，从服务器获取数据。</p>
 <p>controller中手动执行初始化方法后，Android端能够正常显示，IOS端正常显示；由于初始化方法和<code>on-infinite=&quot;&quot;</code>方法为同一个，手动调用一次后在IOS下<code>ion-infinite-scroll</code>会再次自动调用init方法。那么问题就能解决了。</p>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>使用<code>ionic.Platform.platform()</code>判断用户所使用的设备信息，如果不为IOS则手动执行init方法</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (ionic.Platform.platform() !== <span class="string">'ios'</span>) &#123;</div><div class="line">	init();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h3><p>在之后一次偶然的发现，<code>android</code>下的<code>ion-infinite-scroll</code>容器的<code>div</code>会占据整个屏幕，同时我又给<code>ion-infinite-scroll</code>设置了一个<strong>20px</strong>的<code>margin-top</code>。导致<code>ion-infinite-scroll</code>没有满足不足底部1%的触发的条件，从而无法自动加载。</p>
 
           
         
