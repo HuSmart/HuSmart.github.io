@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript,Css," />
 
 
 
@@ -84,13 +84,28 @@
 
 
 
+<meta name="description" content="offsetTop获取父子元素高度差
+偶然发现可以用这种方式获取正确的高度差
+
+123&amp;lt;div class=&quot;photo-wrap full-width&quot; style=&quot;height: 511.94px;&quot;&amp;gt;  &amp;lt;img class=&quot;camera-sample&quot; id=&quot;J_cameraSample&quot; src=&quot;./example.png&quot; &amp;gt;&amp;lt;/div&amp;gt;
+使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="offsetTop获取父子元素的高度差">
 <meta property="og:url" content="http://yoursite.com/2017/12/27/offsetTop获取父子元素的高度差/index.html">
 <meta property="og:site_name" content="普通程序员的博客">
-<meta property="og:updated_time" content="2017-12-27T14:54:17.421Z">
+<meta property="og:description" content="offsetTop获取父子元素高度差
+偶然发现可以用这种方式获取正确的高度差
+
+123&amp;lt;div class=&quot;photo-wrap full-width&quot; style=&quot;height: 511.94px;&quot;&amp;gt;  &amp;lt;img class=&quot;camera-sample&quot; id=&quot;J_cameraSample&quot; src=&quot;./example.png&quot; &amp;gt;&amp;lt;/div&amp;gt;
+使">
+<meta property="og:updated_time" content="2017-12-30T08:11:15.104Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="offsetTop获取父子元素的高度差">
+<meta name="twitter:description" content="offsetTop获取父子元素高度差
+偶然发现可以用这种方式获取正确的高度差
+
+123&amp;lt;div class=&quot;photo-wrap full-width&quot; style=&quot;height: 511.94px;&quot;&amp;gt;  &amp;lt;img class=&quot;camera-sample&quot; id=&quot;J_cameraSample&quot; src=&quot;./example.png&quot; &amp;gt;&amp;lt;/div&amp;gt;
+使">
 
 
 
@@ -317,7 +332,15 @@
       
 
       
-        
+        <h1 id="offsetTop获取父子元素高度差"><a href="#offsetTop获取父子元素高度差" class="headerlink" title="offsetTop获取父子元素高度差"></a>offsetTop获取父子元素高度差</h1><blockquote>
+<p>偶然发现可以用这种方式获取正确的高度差</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"photo-wrap full-width"</span> <span class="attr">style</span>=<span class="string">"height: 511.94px;"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"camera-sample"</span> <span class="attr">id</span>=<span class="string">"J_cameraSample"</span> <span class="attr">src</span>=<span class="string">"./example.png"</span> &gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>使用<code>flex</code>布局，并让其中的元素垂直居中。</p>
+<p>通过获取子元素的<code>offsetTop</code>就能得到高度差的一半。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.photo-wrap</span> &#123;</div><div class="line">  <span class="attribute">position</span>: relative;</div><div class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto;</div><div class="line">  <span class="attribute">display</span>: flex;</div><div class="line">  <span class="attribute">align-items</span>: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-class">.camera-sample</span> &#123;</div><div class="line">  <span class="attribute">vertical-align</span>: bottom;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="selector-tag">img</span> &#123;</div><div class="line">  <span class="attribute">border</span>: <span class="number">0</span> none;</div><div class="line">  <span class="attribute">vertical-align</span>: middle;</div><div class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cameraSample = <span class="built_in">document</span>.querySelector(<span class="string">'#J_cameraSample'</span>)</div><div class="line"><span class="built_in">console</span>.log(cameraSample.offsetTop,<span class="string">'offsetTop'</span>);</div></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -337,6 +360,14 @@
 
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/Css/" rel="tag"># Css</a>
+          
+        </div>
       
 
       
@@ -398,8 +429,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -445,6 +485,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#offsetTop获取父子元素高度差"><span class="nav-number">1.</span> <span class="nav-text">offsetTop获取父子元素高度差</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
