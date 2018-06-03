@@ -14,12 +14,10 @@
 <meta property="og:site_name" content="普通程序员的博客">
 <meta property="og:description" content="没完整的建过站，于是把闲置的搬瓦工用起来。 安装Nginx用终端连接VPSssh root@ip_address -p port换成对应的ip地址和端口，输入正确密码后就成功连接。 yum install nginx 安装nginx失败，提示：没有可用软件包 nginx 源里没有那就直接从官网下好了 rpm -ivh http://nginx.org/packages/centos/7/noarc">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.loli.net/2018/06/03/5b134bd609c2e.png">
-<meta property="og:updated_time" content="2018-06-03T02:22:10.831Z">
+<meta property="og:updated_time" content="2018-06-03T02:24:08.283Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS_7部署Nginx服务">
 <meta name="twitter:description" content="没完整的建过站，于是把闲置的搬瓦工用起来。 安装Nginx用终端连接VPSssh root@ip_address -p port换成对应的ip地址和端口，输入正确密码后就成功连接。 yum install nginx 安装nginx失败，提示：没有可用软件包 nginx 源里没有那就直接从官网下好了 rpm -ivh http://nginx.org/packages/centos/7/noarc">
-<meta name="twitter:image" content="https://i.loli.net/2018/06/03/5b134bd609c2e.png">
     
     
         
@@ -215,7 +213,6 @@
 <p>在配置文件中加入对应的配置~</p>
 <p><code>root</code>是对应站点的跟目录，起初没写。导致使用https访问会404</p>
 <p><code>sudo service nginx restart</code>重启服务后应该可以生效了，如果重启失败可以通过<code>nginx -t</code>检查配置文件是否有问题</p>
-<p><img src="https://i.loli.net/2018/06/03/5b134bd609c2e.png" alt="屏幕快照 2018-06-03 上午10.00.21.png"></p>
 <p>愉悦~</p>
 
   </div>
