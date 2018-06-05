@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="前提条件 公众号申请开通摇一摇周边 添加设备并激活对应设备 拿到设备的一系列参数  设备信息类似于：请将下表的UUID、Major、Minor信息配置至iBeacon设备，其中，major、minor为10进制。    部署设备 设备ID UUID major值 minor值     设备zero 3214551 FDA15795-A3E2-4FB1-DEWF-C6EB07154725 10100">
+<meta name="keywords" content="微信H5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信H5获取iBeacons设备信息">
+<meta property="og:url" content="http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/index.html">
+<meta property="og:site_name" content="普通程序员的博客">
+<meta property="og:description" content="前提条件 公众号申请开通摇一摇周边 添加设备并激活对应设备 拿到设备的一系列参数  设备信息类似于：请将下表的UUID、Major、Minor信息配置至iBeacon设备，其中，major、minor为10进制。    部署设备 设备ID UUID major值 minor值     设备zero 3214551 FDA15795-A3E2-4FB1-DEWF-C6EB07154725 10100">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-05T13:52:05.776Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微信H5获取iBeacons设备信息">
+<meta name="twitter:description" content="前提条件 公众号申请开通摇一摇周边 添加设备并激活对应设备 拿到设备的一系列参数  设备信息类似于：请将下表的UUID、Major、Minor信息配置至iBeacon设备，其中，major、minor为10进制。    部署设备 设备ID UUID major值 minor值     设备zero 3214551 FDA15795-A3E2-4FB1-DEWF-C6EB07154725 10100">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>微信H5获取iBeacons设备信息</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/06/03/CentOS-7部署Nginx服务/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&text=微信H5获取iBeacons设备信息"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&is_video=false&description=微信H5获取iBeacons设备信息"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微信H5获取iBeacons设备信息&body=Check out this article: http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&name=微信H5获取iBeacons设备信息&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前提条件"><span class="toc-number">1.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取beacon信息"><span class="toc-number">2.</span> <span class="toc-text">获取beacon信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加beacon至分组"><span class="toc-number">2.1.</span> <span class="toc-text">添加beacon至分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听beacons"><span class="toc-number">2.2.</span> <span class="toc-text">监听beacons</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#没反应的原因"><span class="toc-number">2.2.1.</span> <span class="toc-text">没反应的原因</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭beacon搜索"><span class="toc-number">3.</span> <span class="toc-text">关闭beacon搜索</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        微信H5获取iBeacons设备信息
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">普通程序员的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-05T13:46:28.000Z" itemprop="datePublished">2018-06-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/微信H5/">微信H5</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h2><ol>
+<li>公众号申请开通摇一摇周边</li>
+<li>添加设备并激活对应设备</li>
+<li>拿到设备的一系列参数</li>
+</ol>
+<p>设备信息类似于：<br>请将下表的UUID、Major、Minor信息配置至iBeacon设备，其中，major、minor为10进制。</p>
+<table>
+<thead>
+<tr>
+<th>部署设备</th>
+<th>设备ID</th>
+<th>UUID</th>
+<th>major值</th>
+<th>minor值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>设备zero</td>
+<td>3214551</td>
+<td>FDA15795-A3E2-4FB1-DEWF-C6EB07154725</td>
+<td>10100</td>
+<td>44511</td>
+</tr>
+</tbody>
+</table>
+<p>1、2是前提条件，不满足API不会有任何反应<br>3 是后续会用到的参数，让PM弄好了给你，如果你自己就是PM就在公众号里找找，可以导出对应Excel</p>
+<h2 id="获取beacon信息"><a href="#获取beacon信息" class="headerlink" title="获取beacon信息"></a>获取beacon信息</h2><p><a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1443448133" target="_blank" rel="noopener">H5页面获取设备信息 JS API</a></p>
+<p>微信提供了开启、监听、关闭三个Beacon对应的接口。<br>在开始查找之前还需要将设备添加至对应分组，否则<code>onSearchBeacons</code>不会有任何反应、不进入任何回调</p>
+<h3 id="添加beacon至分组"><a href="#添加beacon至分组" class="headerlink" title="添加beacon至分组"></a>添加beacon至分组</h3><p>根据文档-(新增分组)[<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1459330208]" target="_blank" rel="noopener">https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1459330208]</a> </p>
+<p>然后将步骤3中的设备加到分组中，<code>onSearchBeacons</code>只能监听位于分组中的beacon设备</p>
+<h3 id="监听beacons"><a href="#监听beacons" class="headerlink" title="监听beacons"></a>监听beacons</h3><p>监听周边beacon前需要执行<code>startSearchBeacons</code>开启查找beacon</p>
+<p>接着在成功回调中执行<code>onSearchBeacons</code>监听周围的beacon设备</p>
+<h4 id="没反应的原因"><a href="#没反应的原因" class="headerlink" title="没反应的原因"></a>没反应的原因</h4><p>在开发过程中遇到的没有反应的原因有以下几种</p>
+<ol>
+<li>设备不在分组中</li>
+<li>公众号没有添加设备</li>
+<li>对应beacon设备没有绑定当前页面的URL</li>
+<li>注册微信SDK的公众号和添加设备的公众号不一致</li>
+</ol>
+<h2 id="关闭beacon搜索"><a href="#关闭beacon搜索" class="headerlink" title="关闭beacon搜索"></a>关闭beacon搜索</h2><p>开启<code>startSearchBeacons</code>后，微信中关闭网页并不会自动stopSearchBeacons。<br>只能手动执行<code>stopSearchBeacons</code>关闭，可添加<code>beforeunload</code> listener在页面卸载前手动关闭</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前提条件"><span class="toc-number">1.</span> <span class="toc-text">前提条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取beacon信息"><span class="toc-number">2.</span> <span class="toc-text">获取beacon信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加beacon至分组"><span class="toc-number">2.1.</span> <span class="toc-text">添加beacon至分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监听beacons"><span class="toc-number">2.2.</span> <span class="toc-text">监听beacons</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#没反应的原因"><span class="toc-number">2.2.1.</span> <span class="toc-text">没反应的原因</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭beacon搜索"><span class="toc-number">3.</span> <span class="toc-text">关闭beacon搜索</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&text=微信H5获取iBeacons设备信息"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&is_video=false&description=微信H5获取iBeacons设备信息"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=微信H5获取iBeacons设备信息&body=Check out this article: http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&title=微信H5获取iBeacons设备信息"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/06/05/微信H5获取iBeacons设备信息/&name=微信H5获取iBeacons设备信息&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 普通程序员
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
