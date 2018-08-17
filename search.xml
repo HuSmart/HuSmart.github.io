@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title>WebGL入门-Part1</title>
+      <link href="/2018/08/17/WebGl%E5%85%A5%E9%97%A8-1/"/>
+      <url>/2018/08/17/WebGl%E5%85%A5%E9%97%A8-1/</url>
+      <content type="html"><![CDATA[<blockquote><p>WebGL是一项用来在网页上绘制和渲染复杂三维图形(3D图形)，并允许用户与之进行交互的技术。</p></blockquote><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在个人计算机上使用最广泛的两种三维图形渲染技术是微软的Direct3D和OpenGL。</p><p>WebGL技术规范继承自免费和开源的OpenGL标准，某种意义上，WebGL就是<br>“Web版的OpenGL”。</p><p>OpenGL、OpenGL ES各版本和WebGL的关系 </p><p><img src="https://ws1.sinaimg.cn/large/e908d83ely1fud2af28yej20w80b248i.jpg" alt="OpenGL、OpenGL ES各版本和WebGL的关系"></p><p>WebGL不仅仅包含Javascript还需要引入着色器语言 GLSL ES。</p><p><img src="https://ws1.sinaimg.cn/large/e908d83ely1fud2grgii2j20u20ca47v.jpg" alt="页面结构对比"></p><p>通过阅读《WebGL编程指南》进行入门是一个不错的选择。</p><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在用WebGL绘制第一个图形前呢，先简单的了解一些概念，方便我们后面对代码的理解。</p><h3 id="着色器"><a href="#着色器" class="headerlink" title="着色器"></a>着色器</h3><p>使用WebGL绘图就必须使用着色器，在代码中着色器是以字符串形式「嵌入」在JavaScript中的，在这其中需要用到两种着色器，着色器使用<strong><code>GLSL ES</code></strong>语言编写，有点类似于C语言。</p><ul><li><p>顶点着色器</p><p>顾名思义，用来描述顶点特性的程序。举个栗子，顶点可以是二维图形或三维图形的端点或交点，三角形的三个就属于顶点。</p></li><li><p>片元着色器</p><p>对逐个片元进行一一处理的程序，定义如何处理WebGL程序的每一个片元，可以把片元理解为像素。片元着色器可以进行一些牛B的特效处理、比如光照之类的。</p></li></ul><h3 id="WebGL坐标系"><a href="#WebGL坐标系" class="headerlink" title="WebGL坐标系"></a>WebGL坐标系</h3><p>WebGL使用的是三维坐标系，X（水平正方向向右）、Y（垂直，正方向向上）、Z（垂直于屏幕，正方向冲向外，也就是和观察者视线相反）轴。</p><p>也被称为右手坐标系，然鹅实际上并不是，现在就这么认为把。</p><p><img src="https://ws1.sinaimg.cn/large/e908d83ely1fud31ukxqhj20mo0k6djs.jpg" alt="坐标系"></p><h3 id="Canvas和WebGL坐标系的对应关系"><a href="#Canvas和WebGL坐标系的对应关系" class="headerlink" title="Canvas和WebGL坐标系的对应关系"></a>Canvas和WebGL坐标系的对应关系</h3><p>WebGL的绘制也是基于Canvas绘制的嘛，三维坐标和二维坐标之间也存在一个对应的关系。</p><p>坐标的最大为1、最小为-1；原点位于中心位置。</p><ul><li>Canvas中心点：(0.0, 0.0, 0.0);</li></ul><p><img src="https://ws1.sinaimg.cn/large/e908d83ely1fud368984tj20he0d8aes.jpg" alt="Canvas和WebGL坐标对应关系"></p><h3 id="Canvas与WebGL坐标的相互转换"><a href="#Canvas与WebGL坐标的相互转换" class="headerlink" title="Canvas与WebGL坐标的相互转换"></a>Canvas与WebGL坐标的相互转换</h3><p>假设鼠标在Canvas上点哪里就要在对应位置绘制内容，可以这样去转换坐标。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">canvas.addEventListener(<span class="string">'mousedown'</span>, (evt) =&gt; &#123;</span><br><span class="line">  <span class="comment">// rect 是一个具有四个属性left、top、right、bottom的DOMRect对象</span></span><br><span class="line">  <span class="comment">// 除了width和 height、四个坐标均是DOM边界相对于视窗左上角</span></span><br><span class="line">  <span class="keyword">const</span> rect = evt.target.getBoundingClientRect();</span><br><span class="line">  <span class="comment">// 原点位于中心，宽高分别除2</span></span><br><span class="line">  <span class="keyword">const</span> height = canvas.height / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">const</span> width = canvas.width / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> x = ((evt.clientX - rect.left) - width) / width;</span><br><span class="line">  <span class="keyword">const</span> y = (height - (evt.clientY - rect.top)) / height;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><p>在了解这些基本概念后，我们就可以着手使用WebGL绘制一些内容啦。</p><p>To Be Continue &gt;&gt;&gt;</p>]]></content>
+      
+      
+        <tags>
+            
+            <tag> WebGl </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>PD虚拟机搭建CentOS-7环境</title>
       <link href="/2018/07/07/PD%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BACentOS-7%E7%8E%AF%E5%A2%83/"/>
       <url>/2018/07/07/PD%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BACentOS-7%E7%8E%AF%E5%A2%83/</url>
