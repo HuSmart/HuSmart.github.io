@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/e908d83ely1fud2grgii2j20u20ca47v.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/e908d83ely1fud31ukxqhj20mo0k6djs.jpg">
 <meta property="og:image" content="https://ws1.sinaimg.cn/large/e908d83ely1fud368984tj20he0d8aes.jpg">
-<meta property="og:updated_time" content="2018-08-17T15:11:39.647Z">
+<meta property="og:updated_time" content="2018-08-18T10:34:04.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WebGL入门-Part1">
 <meta name="twitter:description" content="WebGL是一项用来在网页上绘制和渲染复杂三维图形(3D图形)，并允许用户与之进行交互的技术。  概述在个人计算机上使用最广泛的两种三维图形渲染技术是微软的Direct3D和OpenGL。 WebGL技术规范继承自免费和开源的OpenGL标准，某种意义上，WebGL就是“Web版的OpenGL”。 OpenGL、OpenGL ES各版本和WebGL的关系   WebGL不仅仅包含Javascri">
@@ -177,7 +177,7 @@
 <h3 id="Canvas与WebGL坐标的相互转换"><a href="#Canvas与WebGL坐标的相互转换" class="headerlink" title="Canvas与WebGL坐标的相互转换"></a>Canvas与WebGL坐标的相互转换</h3><p>假设鼠标在Canvas上点哪里就要在对应位置绘制内容，可以这样去转换坐标。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">canvas.addEventListener(<span class="string">'mousedown'</span>, (evt) =&gt; &#123;</span><br><span class="line">  <span class="comment">// rect 是一个具有四个属性left、top、right、bottom的DOMRect对象</span></span><br><span class="line">  <span class="comment">// 除了width和 height、四个坐标均是DOM边界相对于视窗左上角</span></span><br><span class="line">  <span class="keyword">const</span> rect = evt.target.getBoundingClientRect();</span><br><span class="line">  <span class="comment">// 原点位于中心，宽高分别除2</span></span><br><span class="line">  <span class="keyword">const</span> height = canvas.height / <span class="number">2</span>;</span><br><span class="line">  <span class="keyword">const</span> width = canvas.width / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> x = ((evt.clientX - rect.left) - width) / width;</span><br><span class="line">  <span class="keyword">const</span> y = (height - (evt.clientY - rect.top)) / height;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p>在了解这些基本概念后，我们就可以着手使用WebGL绘制一些内容啦。</p>
-<p>To Be Continue &gt;&gt;&gt;</p>
+<p><a href="https://blog.normaldev.app/2018/08/18/WebGL%E5%85%A5%E9%97%A8-2/" target="_blank" rel="noopener">To Be Continue ✍️绘制一个点&gt;&gt;&gt;</a></p>
 
   </div>
 </article>
