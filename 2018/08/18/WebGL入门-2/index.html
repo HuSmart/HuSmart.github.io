@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="WebGL入门-Part1 中介绍了一些基本概念，接着我们来用WebGL画点东西，熟悉绘制WebGL的基本流程。 获取上下文环境WebGL的绘制也是在&amp;lt;canvas&amp;gt;标签的基础上进行绘制的，第一步也是创建CanvasDom并获取其WebGL的上下文。 1234const canvas = document.querySelector(&apos;#J_canvas&apos;);// 在不同浏览器环境下/">
+<meta name="keywords" content="WebGl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebGL入门-Part2">
+<meta property="og:url" content="http://yoursite.com/2018/08/18/WebGL入门-2/index.html">
+<meta property="og:site_name" content="普通程序员的博客">
+<meta property="og:description" content="WebGL入门-Part1 中介绍了一些基本概念，接着我们来用WebGL画点东西，熟悉绘制WebGL的基本流程。 获取上下文环境WebGL的绘制也是在&amp;lt;canvas&amp;gt;标签的基础上进行绘制的，第一步也是创建CanvasDom并获取其WebGL的上下文。 1234const canvas = document.querySelector(&apos;#J_canvas&apos;);// 在不同浏览器环境下/">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://ws1.sinaimg.cn/large/e908d83ely1fudrhjys1rj212e0lugtc.jpg">
+<meta property="og:updated_time" content="2018-08-18T10:30:09.553Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebGL入门-Part2">
+<meta name="twitter:description" content="WebGL入门-Part1 中介绍了一些基本概念，接着我们来用WebGL画点东西，熟悉绘制WebGL的基本流程。 获取上下文环境WebGL的绘制也是在&amp;lt;canvas&amp;gt;标签的基础上进行绘制的，第一步也是创建CanvasDom并获取其WebGL的上下文。 1234const canvas = document.querySelector(&apos;#J_canvas&apos;);// 在不同浏览器环境下/">
+<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/e908d83ely1fudrhjys1rj212e0lugtc.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>WebGL入门-Part2</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/08/17/WebGl入门-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/08/18/WebGL入门-2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/08/18/WebGL入门-2/&text=WebGL入门-Part2"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/08/18/WebGL入门-2/&is_video=false&description=WebGL入门-Part2"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=WebGL入门-Part2&body=Check out this article: http://yoursite.com/2018/08/18/WebGL入门-2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/08/18/WebGL入门-2/&name=WebGL入门-Part2&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取上下文环境"><span class="toc-number">1.</span> <span class="toc-text">获取上下文环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义着色器"><span class="toc-number">2.</span> <span class="toc-text">定义着色器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#顶点着色器"><span class="toc-number">2.1.</span> <span class="toc-text">顶点着色器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#片元着色器"><span class="toc-number">2.2.</span> <span class="toc-text">片元着色器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化着色器"><span class="toc-number">3.</span> <span class="toc-text">初始化着色器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清空绘制区域"><span class="toc-number">4.</span> <span class="toc-text">清空绘制区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制"><span class="toc-number">5.</span> <span class="toc-text">绘制</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        WebGL入门-Part2
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">普通程序员的博客</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-18T03:49:13.000Z" itemprop="datePublished">2018-08-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/WebGl/">WebGl</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><a href="https://blog.normaldev.app/2018/08/17/WebGl%E5%85%A5%E9%97%A8-1/" target="_blank" rel="noopener">WebGL入门-Part1</a> 中介绍了一些基本概念，接着我们来用WebGL画点东西，熟悉绘制WebGL的基本流程。</p>
+<h2 id="获取上下文环境"><a href="#获取上下文环境" class="headerlink" title="获取上下文环境"></a>获取上下文环境</h2><p>WebGL的绘制也是在<code>&lt;canvas&gt;</code>标签的基础上进行绘制的，第一步也是创建CanvasDom并获取其WebGL的上下文。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> canvas = <span class="built_in">document</span>.querySelector(<span class="string">'#J_canvas'</span>);</span><br><span class="line"><span class="comment">// 在不同浏览器环境下</span></span><br><span class="line"><span class="comment">// context可能对应着不同的值 ["webgl", "experimental-webgl", "webkit-3d", "moz-webgl"]</span></span><br><span class="line"><span class="keyword">const</span> gl = canvas.getContext(<span class="string">'webgl'</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="定义着色器"><a href="#定义着色器" class="headerlink" title="定义着色器"></a>定义着色器</h2><p>WebGL必须要使用着色器进行绘制，我们要用 GLSL ES 定义顶点着色器和片元着色器。</p>
+<p>我们先定义分别定义顶点、片元着色器，绘制一个点。</p>
+<p>着色器语言1均表示的最高值，-1就是最小值。</p>
+<h3 id="顶点着色器"><a href="#顶点着色器" class="headerlink" title="顶点着色器"></a>顶点着色器</h3><p>每个着色器都有一个main函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  gl_Position = vec4(<span class="number">1.0</span>, <span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>); <span class="comment">// 描述点的位置</span></span><br><span class="line">  gl_PointSize = <span class="number">10.0</span>; <span class="comment">// 点的大小</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="片元着色器"><a href="#片元着色器" class="headerlink" title="片元着色器"></a>片元着色器</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// vec4(R, G, B, A) 1就表示R的值为最高也就相当于颜色RGBA(255, 0, 0, 1);</span></span><br><span class="line">    gl_FragColor = vec4(<span class="number">1.0</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>); <span class="comment">// 点的颜色</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="初始化着色器"><a href="#初始化着色器" class="headerlink" title="初始化着色器"></a>初始化着色器</h2><p>这里我们先使用辅助函数<code>initShaders(gl, vshader, fshader)</code>初始化着色器，后面我们会详细讲解其内部实现。</p>
+<h2 id="清空绘制区域"><a href="#清空绘制区域" class="headerlink" title="清空绘制区域"></a>清空绘制区域</h2><p>在绘制之前我们可以先清空绘制区域</p>
+<p><code>gl.clearColor(0.0, 1.0, 0.0, 0.5);</code>设置清空背景的填充色</p>
+<p><code>gl.clear(buffer);</code> 执行清空</p>
+<p>buffer指的是缓冲区，执行清空其实就是将指定缓冲区设为给定的值。</p>
+<p>取值有以下三种类型</p>
+<ul>
+<li>gl.COLOR_BUFFER_BIT  颜色缓冲区</li>
+<li>gl.DEPTH_BUFFER_BIT 深度缓冲区</li>
+<li>gl.STENCIL_BUFFER_BIT 模板缓冲区</li>
+</ul>
+<p>通过<code>gl.clear(gl.COLOR_BUFFER_BIT)</code>将颜色缓冲区设为我们给定的色值。</p>
+<p><code>gl.clear(buffer | buffer)</code>可以指定多个缓冲区.</p>
+<p>💡如果清空的颜色不变，则没有必要重复设置clearColor。</p>
+<h2 id="绘制"><a href="#绘制" class="headerlink" title="绘制"></a>绘制</h2><p>通过<code>drawArrays(mode, first, count)</code>进行绘制。</p>
+<p>first - 表示从哪个定带你开始绘制</p>
+<p>count - 表示要此次绘制需要用到多少个顶点</p>
+<p>mode告诉WebGL以哪种方式进行绘制，有以下几种方式，可以分别尝试一下。</p>
+<p>🤷‍♂️不过，我们目前只有一个顶点，除了Point其他也画不了。 </p>
+<p><img src="https://ws1.sinaimg.cn/large/e908d83ely1fudrhjys1rj212e0lugtc.jpg" alt="绘制方式"></p>
+<p>通过<code>gl.drawArrays(glCtx.POINTS, 0, 1);</code>绘制一个点.</p>
+<p>⚠️drawArrays绘制后会清空缓冲区，上一步clear背景色变成默认的透明，如果还需要背景色，需要再一次<code>gl.clear();</code></p>
+<p><a class="jsbin-embed" href="https://jsbin.com/vasepolexu/embed?output" target="_blank" rel="noopener">Document on jsbin.com</a><script src="https://static.jsbin.com/js/embed.min.js?4.1.4"></script></p>
+<p>试着改变着色器中的各个参数会发生什么吧。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取上下文环境"><span class="toc-number">1.</span> <span class="toc-text">获取上下文环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义着色器"><span class="toc-number">2.</span> <span class="toc-text">定义着色器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#顶点着色器"><span class="toc-number">2.1.</span> <span class="toc-text">顶点着色器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#片元着色器"><span class="toc-number">2.2.</span> <span class="toc-text">片元着色器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化着色器"><span class="toc-number">3.</span> <span class="toc-text">初始化着色器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#清空绘制区域"><span class="toc-number">4.</span> <span class="toc-text">清空绘制区域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制"><span class="toc-number">5.</span> <span class="toc-text">绘制</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/08/18/WebGL入门-2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/08/18/WebGL入门-2/&text=WebGL入门-Part2"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/08/18/WebGL入门-2/&is_video=false&description=WebGL入门-Part2"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=WebGL入门-Part2&body=Check out this article: http://yoursite.com/2018/08/18/WebGL入门-2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/08/18/WebGL入门-2/&title=WebGL入门-Part2"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/08/18/WebGL入门-2/&name=WebGL入门-Part2&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 普通程序员
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/Search/">Search</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
